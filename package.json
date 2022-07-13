@@ -1,60 +1,97 @@
 {
-	"name": "11-09-FE",
-	"version": "0.1.0",
-	"private": true,
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/bsideproject/11-09-FE.git"
-	},
-	"scripts": {
-		"start": "PORT=9090 react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject"
-	},
-	"dependencies": {
-		"@testing-library/react": "^13.3.0",
-		"@testing-library/user-event": "^13.5.0",
-		"@types/jest": "^27.5.2",
-		"@types/node": "^16.11.42",
-		"@types/react": "^18.0.14",
-		"@types/react-dom": "^18.0.5",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"react-scripts": "5.0.1",
-		"typescript": "^4.7.4",
-		"web-vitals": "^2.1.4",
-		"workbox-background-sync": "^6.5.3",
-		"workbox-broadcast-update": "^6.5.3",
-		"workbox-cacheable-response": "^6.5.3",
-		"workbox-core": "^6.5.3",
-		"workbox-expiration": "^6.5.3",
-		"workbox-google-analytics": "^6.5.3",
-		"workbox-navigation-preload": "^6.5.3",
-		"workbox-precaching": "^6.5.3",
-		"workbox-range-requests": "^6.5.3",
-		"workbox-routing": "^6.5.3",
-		"workbox-strategies": "^6.5.3",
-		"workbox-streams": "^6.5.3"
-	},
-	"devDependencies": {
-		"@testing-library/jest-dom": "^5.16.4",
-		"@types/testing-library__jest-dom": "^5"
-	},
-	"packageManager": "yarn@3.2.1",
-	"engines": {
-		"node": ">=16.x"
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	}
+  "name": "11-09-FE",
+  "version": "0.1.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bsideproject/11-09-FE.git"
+  },
+  "scripts": {
+    "start": "PORT=9090 craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
+    "lint": "eslint --ext .ts,.tsx src/",
+    "lint:fix": "eslint --fix --ext .ts,.tsx src/",
+    "format": "prettier --write src/ --config ./.prettierrc",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged",
+    "prepush": "prepush-if-changed"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "prettier --write",
+      "eslint --cache --fix"
+    ]
+  },
+  "prepush-if-changed": {
+    "src/**/*.{ts,tsx}": "yarn test --watchAll=false --maxWorkers=50%"
+  },
+  "dependencies": {
+    "@craco/craco": "^6.4.3",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "source-map-support": "^0.5.21",
+    "typescript": "^4.7.4",
+    "web-vitals": "^2.1.4",
+    "workbox-background-sync": "^6.5.3",
+    "workbox-broadcast-update": "^6.5.3",
+    "workbox-cacheable-response": "^6.5.3",
+    "workbox-core": "^6.5.3",
+    "workbox-expiration": "^6.5.3",
+    "workbox-google-analytics": "^6.5.3",
+    "workbox-navigation-preload": "^6.5.3",
+    "workbox-precaching": "^6.5.3",
+    "workbox-range-requests": "^6.5.3",
+    "workbox-routing": "^6.5.3",
+    "workbox-strategies": "^6.5.3",
+    "workbox-streams": "^6.5.3"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.11.42",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "@types/source-map-support": "^0",
+    "@types/testing-library__jest-dom": "^5",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "craco-alias": "^3.0.1",
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb": "latest",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.2.5",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-prettier": "latest",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.3",
+    "prepush-if-changed": "^1.0.8",
+    "prettier": "^2.7.1",
+    "ts-jest": "^28.0.5"
+  },
+  "packageManager": "yarn@3.2.1",
+  "engines": {
+    "node": ">=16.x"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
