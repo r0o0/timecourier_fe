@@ -17,17 +17,20 @@
       "jsx": true
     },
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": ["./packages/**/tsconfig.json"]
   },
   "plugins": ["react", "@typescript-eslint", "unused-imports", "simple-import-sort"],
   "rules": {
     // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+    "react/jsx-props-no-spreading": "off",
+    // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/require-default-props.md
+    "react/require-default-props": "off",
 
     // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/extensions.md
     "import/extensions": [
       "error",
-      "ignorePackages",
       {
         "js": "never",
         "jsx": "never",
@@ -62,7 +65,9 @@
               // `react` first then packages starting with a character
               ["^react$", "^[a-z]"],
               // Packages starting with `@`
-              ["^@"],
+              ["@"],
+              // Packages starting with `~`
+              ["~"],
               // Imports starting with `../`
               ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
               // Imports starting with `./`
@@ -75,6 +80,15 @@
           }
         ]
       }
+    },
+    {
+      "files": [
+        "**/*.stories.*"
+      ],
+      "rules": {
+        "import/no-anonymous-default-export": "off",
+        "react/function-component-definition": "off"
+      }
     }
   ],
   "settings": {
@@ -82,7 +96,9 @@
       "version": "detect"
     },
     "import/resolver": {
-      "typescript": {}
+      "typescript": {
+        "project": ["tsconfig.json", "packages/**/tsconfig.json"]
+      }
     }
   }
 }
