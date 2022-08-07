@@ -1,4 +1,4 @@
-import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
+import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 
 export const transitionSystem = {
   duration: {
