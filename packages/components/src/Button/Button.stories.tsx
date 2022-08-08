@@ -1,29 +1,29 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
+import { ReactComponent as CancelIcon } from '../assets/icons/cancel.svg';
+
 import Button from './Button';
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Example/Button',
+  title: 'Inputs/Button',
   component: Button,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: {
-    backgroundColor: {
-      control: 'select',
-    },
-    size: {
-      control: 'radio',
-    },
-  },
+  argTypes: { background: { control: 'select' } },
 } as ComponentMeta<typeof Button>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Templates: ComponentStory<typeof Button> = (args) => (
+  <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+    <Button {...args} size="small" />
+    <Button {...args} size="medium" />
+    <Button {...args} size="large" />
+  </div>
+);
 
-export const Primary = Template.bind({
-});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
-  primary: true,
-  label: 'Button',
+export const Base = Templates.bind({});
+Base.args = { label: '편지 보내기', variant: 'solid' };
+
+export const IconOnly = Templates.bind({});
+IconOnly.args = {
+  children: <CancelIcon />,
+  iconPosition: 'right',
+  variant: 'solid',
 };
