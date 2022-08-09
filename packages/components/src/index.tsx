@@ -1,12 +1,4 @@
-import { StrictMode } from 'react';
-import ReactDOM from 'react-dom/client';
+import '@blueprintjs/core/lib/css/blueprint.css';
 
-import reportWebVitals from './reportWebVitals';
-
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-root.render(<StrictMode />);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+export { default as Button } from './Button/Button';
+export { default as ProgressBar } from './ProgressBar/ProgressBar';

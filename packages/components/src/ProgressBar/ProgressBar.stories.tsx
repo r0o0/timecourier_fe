@@ -15,7 +15,7 @@ const Template: ComponentStory<typeof ProgressBar> = (args) => (
     <div style={{ padding }}>
       <ProgressBar {...args} />
     </div>
-    <div style={{ padding, backgroundColor: vars.colors.black}}>
+    <div style={{ padding, backgroundColor: vars.colors.black }}>
       <ProgressBar {...args} />
     </div>
   </>

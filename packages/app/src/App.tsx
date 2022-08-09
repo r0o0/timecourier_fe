@@ -1,4 +1,4 @@
-import Button from '~components/Button/Button';
+import { Button, ProgressBar } from '~components/index';
 
 import logo from './logo.svg';
 
@@ -8,6 +8,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <ProgressBar steps={5} activeStep={2} />
         <img src={logo} className="App-logo" alt="logo" />
         <Button label="Shared Button" background="transparent" />
         <p>

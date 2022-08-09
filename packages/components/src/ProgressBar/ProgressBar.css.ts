@@ -7,7 +7,8 @@ export const progressBarClassName = style({
   backgroundColor: vars.colors.gray900,
 });
 
-globalStyle('.bp4-progress-meter', {
+globalStyle(`${progressBarClassName}.bp4-no-stripes .bp4-progress-meter`, {
+  left: 0,
   height: 'inherit',
   background: vars.colors.gradientDark,
   transitionProperty: 'width',
