@@ -12,6 +12,7 @@ export const colorSystem = {
   gray300: '#E8E8E8',
   gray100: '#F8F8F8',
   gradientDark: 'linear-gradient(90deg, #7848FF 0%, #DA74E3 100%)',
+  invertedGradientDark: 'linear-gradient(-90deg, #7848FF 0%, #DA74E3 100%)',
   gradientLight: 'linear-gradient(90deg, #A788FF 0%, #F5B5FF 100%)',
 };
 
@@ -23,5 +24,4 @@ const colorProperties = defineProperties({
 });
 
 export const colors = createSprinkles(colorProperties);
-
 export type Colors = Parameters<typeof colors>[0];

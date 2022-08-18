@@ -13,3 +13,5 @@ export function getBackground(
     outline: 'transparent',
   })[variant];
 }
+
+export const outlineGradientBackgroundImage = (bgColor: string, gradient: string) => `linear-gradient(${bgColor}, ${bgColor}), ${gradient}`;
