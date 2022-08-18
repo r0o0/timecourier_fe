@@ -25,7 +25,10 @@
       "eslint --cache --fix"
     ],
     "packages/components/src/assets/icons": [
-      "yarn components svgo"
+      "yarn components svgo:icons"
+    ],
+    "packages/components/src/assets/images": [
+      "yarn components svgo:images"
     ]
   },
   "prepush-if-changed": {
