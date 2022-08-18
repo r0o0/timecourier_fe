@@ -2,8 +2,6 @@ import { createVar, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 
-import { outlineGradientBackgroundImage } from './Button.utils';
-
 import { vars } from '../styles/global.css';
 
 const buttonSize = {
@@ -24,7 +22,7 @@ const buttonVariantColors = defineProperties({
       white: vars.colors.white,
     },
     borderColor: {
-      gradient: vars.colors.gradientDark,
+      gradient: 'transparent',
       primary: vars.colors.primary,
     },
     width: {
@@ -36,7 +34,7 @@ const buttonVariantColors = defineProperties({
 });
 export const buttonSprinkles = createSprinkles(buttonVariantColors);
 
-const hoverBackground = createVar();
+export const hoverBackground = createVar();
 
 export const buttonClassName = style({
   vars: { [hoverBackground]: vars.colors.gradientDark },
@@ -76,8 +74,6 @@ export const buttonRecipe = recipe({
         '::before': {
           content: '',
           position: 'absolute',
-          top: 0,
-          left: 0,
           width: 'inherit',
           height: 'inherit',
           background: vars.colors.primary,
@@ -100,33 +96,6 @@ export const buttonRecipe = recipe({
         selectors: { '&:hover:after': { opacity: 1 } },
       },
       transparent: { background: 'transparent' },
-    },
-  },
-});
-
-export const buttonOutlineBackgroundImageVar = createVar();
-export const outlineGradientClassName = recipe({
-  base: {
-    vars: { [buttonOutlineBackgroundImageVar]: vars.colors.gradientDark },
-    borderColor: 'transparent',
-    backgroundOrigin: 'border-box',
-    backgroundClip: 'padding-box, border-box',
-    borderImageSlice: 1,
-  },
-  variants: {
-    background: {
-      black: {
-        backgroundImage: outlineGradientBackgroundImage(
-          vars.colors.black,
-          buttonOutlineBackgroundImageVar,
-        ),
-      },
-      white: {
-        backgroundImage: outlineGradientBackgroundImage(
-          vars.colors.white,
-          buttonOutlineBackgroundImageVar,
-        ),
-      },
     },
   },
 });

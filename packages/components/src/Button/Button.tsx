@@ -5,12 +5,7 @@ import { ButtonNext, ButtonPrev } from './ButtonPrevNext/ButtonPrevNext';
 import { ButtonProps, IconOnlyProps, WithIconProps } from './Button.types';
 import { getBackground } from './Button.utils';
 
-import {
-  buttonClassName,
-  buttonRecipe,
-  buttonSprinkles,
-  outlineGradientClassName,
-} from './Button.css';
+import { buttonClassName, buttonRecipe, buttonSprinkles } from './Button.css';
 
 function Button(props: IconOnlyProps): JSX.Element;
 function Button(props: WithIconProps): JSX.Element;
@@ -36,7 +31,6 @@ function Button(props: ButtonProps) {
   );
   const borderColor = variant === 'outline' ? borderColorFromParent : undefined;
   const size = variant === 'transparent' ? 'custom' : sizeFromParent;
-  const outlineGradient = borderColor === 'gradient' && (background === 'black' || background === 'white');
 
   // TODO 아래 문제 타입 에러가 왜 나는지 확인 필요
   return (
@@ -54,7 +48,6 @@ function Button(props: ButtonProps) {
           background,
           borderColor: 'borderColor' in props ? borderColor : undefined,
         }),
-        outlineGradient && outlineGradientClassName({ background }),
         rest.className,
       )}
     >

@@ -6,15 +6,16 @@ import Button from '../Button';
 
 import { ButtonNextProps } from './ButtonPrevNext.types';
 
-import { buttonNextClassName, buttonPrevClassName } from './ButtonPrevNext.css';
+import { gradientOutlineRecipe } from '../../styles/gradient.css';
+import { buttonNextStyle, buttonPrevStyle } from './ButtonPrevNext.css';
 
 export function ButtonPrev(props: ButtonNextProps) {
   const { className, ...rest } = props;
+
   return (
     <Button
       {...rest}
-      className={classNames(buttonPrevClassName, className)}
-      variant="outline"
+      className={classNames(buttonPrevStyle, gradientOutlineRecipe({ background: 'black' }), className)}
       borderColor="gradient"
     >
       <ArrowGradientPrev />
@@ -27,8 +28,7 @@ export function ButtonNext(props: ButtonNextProps) {
   return (
     <Button
       {...rest}
-      className={classNames(buttonNextClassName, className)}
-      variant="outline"
+      className={classNames(buttonNextStyle, gradientOutlineRecipe({ background: 'black' }), className)}
       borderColor="gradient"
     >
       <ArrowGradientNext />
