@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 import { colorSystem } from './colors.css';
 
