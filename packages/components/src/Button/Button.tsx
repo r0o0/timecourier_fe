@@ -1,4 +1,3 @@
-import { isValidElement } from 'react';
 import classNames from 'classnames';
 
 import { ButtonNext, ButtonPrev } from './ButtonPrevNext/ButtonPrevNext';
@@ -15,7 +14,7 @@ function Button(props: ButtonProps) {
     size: sizeFromParent = 'large',
     children,
     iconPosition = 'right',
-    iconOnly: iconOnlyFromParent = false,
+    iconOnly,
     label,
     variant = 'solid',
     background: backgroundFromParent,
@@ -23,7 +22,6 @@ function Button(props: ButtonProps) {
     ...rest
   } = props;
 
-  const iconOnly = iconOnlyFromParent || (!label && isValidElement(children) && typeof children !== 'string');
   const width = iconOnly ? sizeFromParent : 'parent';
   const background = getBackground(
     variant,

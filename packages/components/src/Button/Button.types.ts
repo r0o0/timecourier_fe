@@ -13,7 +13,6 @@ type ButtonAttributes = JSX.IntrinsicElements['button'];
 interface ButtonCommonProps extends ButtonAttributes {
   size?: ButtonSize;
   label?: string;
-  // children?: ReactNode[];
 }
 
 export type OutlineVariantProps = ButtonCommonProps & {
