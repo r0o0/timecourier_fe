@@ -1,3 +1,4 @@
+/* eslint-disable */
 import mainWrite from '@/assets/icons//main_writeLetter.svg';
 import mainSend from '@/assets/icons/main_mailbox.svg';
 
