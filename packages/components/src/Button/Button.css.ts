@@ -36,7 +36,7 @@ export const buttonSprinkles = createSprinkles(buttonVariantColors);
 
 export const hoverBackground = createVar();
 
-export const buttonClassName = style({
+export const buttonStyle = style({
   vars: { [hoverBackground]: vars.colors.gradientDark },
   display: 'inline-flex',
   alignItems: 'center',

@@ -5,7 +5,7 @@ import { ButtonNext, ButtonPrev } from './ButtonPrevNext/ButtonPrevNext';
 import { ButtonProps, IconOnlyProps, WithIconProps } from './Button.types';
 import { getBackground } from './Button.utils';
 
-import { buttonClassName, buttonRecipe, buttonSprinkles } from './Button.css';
+import { buttonRecipe, buttonSprinkles, buttonStyle } from './Button.css';
 
 function Button(props: IconOnlyProps): JSX.Element;
 function Button(props: WithIconProps): JSX.Element;
@@ -40,7 +40,7 @@ function Button(props: ButtonProps) {
       {...rest}
       type={type}
       className={classNames(
-        buttonClassName,
+        buttonStyle,
         buttonRecipe({ size, variant }),
         buttonSprinkles({
           width,

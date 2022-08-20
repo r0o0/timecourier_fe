@@ -94,3 +94,17 @@ path alias의 네이밍 규칙은 `~<folder>/*`로 합니다.
 사용법: src/assets/icons -> `~assets/icons`
 </details>
 
+### `@vanilla-extract` Convention
+[기본 스타일 문서](https://vanilla-extract.style/documentation/api/style/) | [sprinkles 문서](https://vanilla-extract.style/documentation/packages/sprinkles/) | [recipe 문서](https://vanilla-extract.style/documentation/packages/recipes/)
+
+사용하고자 하는 `@vanilla-extract`의 함수에 따라 변수 명을 `<componentName>Style` | `<componentName>Sprinkles` 등과 같이 지어 주세요. 
+```js
+// Button component 
+// style
+ import { style } from '@vanilla-extract/css';
+ const buttonStyle = style({});
+ 
+ // recipe
+ import { recipe } from '@vanilla-extract/recipes';
+ const buttonRecipe = recipe({});
+```
