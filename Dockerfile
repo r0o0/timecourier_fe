@@ -5,6 +5,5 @@ RUN yarn install
 
 RUN yarn build:all
 
-EXPOSE 9090
 
 CMD ["yarn","docker-start:all"]
