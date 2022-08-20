@@ -19,7 +19,7 @@ yarn
 ```
 
 3. Workspaces usage:
-특정 `workspace` 에 정의된 명령어 실행: `yarn <workspace-name> <comman-name>`
+특정 `workspace` 에 정의된 명령어 실행: `yarn <workspace-name> <command-name>`
 
 Run Workspaces in development mode:
 - app: 타임레터 앱 workspace
