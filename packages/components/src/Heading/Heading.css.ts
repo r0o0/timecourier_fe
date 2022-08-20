@@ -2,7 +2,7 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { vars } from '../styles/global.css';
 
-export const headingClassName = recipe({
+export const headingStyle = recipe({
   base: {
     fontFamily: vars.fonts.display.family,
     margin: 0,

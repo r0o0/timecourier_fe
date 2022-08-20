@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { HeadingProps } from './Heading.types';
 
-import { headingClassName } from './Heading.css';
+import { headingStyle } from './Heading.css';
 
 const Heading = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
   const { as: elementAs = 'h2', heading, size = 1, ...rest } = props;
@@ -13,7 +13,7 @@ const Heading = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
     {
       ...rest,
       ref,
-      className: classNames(headingClassName({ size }), rest.className),
+      className: classNames(headingStyle({ size }), rest.className),
     },
     heading,
   );

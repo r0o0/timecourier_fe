@@ -5,7 +5,7 @@ import { ProgressBar as BProgressBar } from '@blueprintjs/core';
 
 import { ProgressBarProps } from './ProgressBar.types';
 
-import { progressBarClassName } from './ProgressBar.css';
+import { progressBarStyle } from './ProgressBar.css';
 
 const fullValue = 1;
 function ProgressBar(props: ProgressBarProps) {
@@ -21,7 +21,7 @@ function ProgressBar(props: ProgressBarProps) {
 
   return (
     <BProgressBar
-      className={classNames(progressBarClassName, className)}
+      className={classNames(progressBarStyle, className)}
       value={value}
       stripes={false}
       animate={false}

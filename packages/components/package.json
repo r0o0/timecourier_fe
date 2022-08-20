@@ -8,7 +8,8 @@
     "lint": "eslint --ext .ts,.tsx src/ --cache",
     "lint:fix": "eslint --fix --ext .ts,.tsx src/",
     "format": "prettier --write src/ --config",
-    "svgo": "svgo -f src/assets/icons",
+    "svgo:icons": "svgo -f src/assets/icons -r --config svgo.config-icons.js",
+    "svgo:images": "svgo -f src/assets/images -r --config svgo.config-images.js",
     "start": "start-storybook -p 9009",
     "build": "build-storybook"
   },
