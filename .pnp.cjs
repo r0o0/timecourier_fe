@@ -10265,6 +10265,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/testing-library__jest-dom", "npm:5.14.5"],\
             ["@vanilla-extract/babel-plugin", "npm:1.1.7"],\
             ["@vanilla-extract/css", "npm:1.7.2"],\
+            ["@vanilla-extract/css-utils", "npm:0.1.2"],\
             ["@vanilla-extract/recipes", "virtual:d7474fbff71ffdb94b6c248e7215bbc030cd24f64bf47fd1c4986c5e38c67a0e96a83bda3f62761c90d5dd7c8576cee2f1b73d45bd48b9158a3c837ffd2bc4d2#npm:0.2.5"],\
             ["@vanilla-extract/sprinkles", "virtual:d7474fbff71ffdb94b6c248e7215bbc030cd24f64bf47fd1c4986c5e38c67a0e96a83bda3f62761c90d5dd7c8576cee2f1b73d45bd48b9158a3c837ffd2bc4d2#npm:1.4.1"],\
             ["@vanilla-extract/webpack-plugin", "virtual:d7474fbff71ffdb94b6c248e7215bbc030cd24f64bf47fd1c4986c5e38c67a0e96a83bda3f62761c90d5dd7c8576cee2f1b73d45bd48b9158a3c837ffd2bc4d2#npm:2.1.11"],\
@@ -11421,6 +11422,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["escape-string-regexp", "npm:4.0.0"],\
             ["media-query-parser", "npm:2.0.2"],\
             ["outdent", "npm:0.8.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@vanilla-extract/css-utils", [\
+        ["npm:0.1.2", {\
+          "packageLocation": "./.yarn/cache/@vanilla-extract-css-utils-npm-0.1.2-58c55a7410-002c658899.zip/node_modules/@vanilla-extract/css-utils/",\
+          "packageDependencies": [\
+            ["@vanilla-extract/css-utils", "npm:0.1.2"]\
           ],\
           "linkType": "HARD"\
         }]\
