@@ -4,7 +4,6 @@ import mainWrite from '@/assets/icons/main_writeLetter.svg';
 import Sidebar from '../Sidebar/Sidebar';
 
 import MainBox from './Components/MainBox';
-
 import { mainBody } from './Main.css';
 
 function Main() {
