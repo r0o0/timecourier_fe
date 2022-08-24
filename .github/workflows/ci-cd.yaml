@@ -24,6 +24,7 @@ jobs:
           touch .env.production
           echo REACT_APP_KAKAO_API_KEY=${{ secrets.REACT_APP_KAKAO_API_KEY }} >> .env.production
           echo REACT_APP_KAKAO_API_LOGIN_URL=${{ secrets.REACT_APP_KAKAO_API_LOGIN_URL }} >> .env.production
+          echo REACT_APP_KAKAO_API_ACCESS_TOKEN=${{ secrets.REACT_APP_KAKAO_API_ACCESS_TOKEN }} >> .env.production
           echo REACT_APP_KAKAO_API_MESSAGE_URL=${{ secrets.REACT_APP_KAKAO_API_MESSAGE_URL }} >> .env.production
           cat .env.production
 
