@@ -111,4 +111,4 @@ const opacityHex = {
 export const createHexWithOpacity = (color: string, value: keyof typeof opacityHex) => `${color}${opacityHex[value]}`;
 
 // spacing
-export const spacing = (px: number) => calc(px).divide(360).multiply('100vw');
+export const spacing = (px: number) => calc(px).divide(360).multiply('100%');
