@@ -12,5 +12,6 @@ export const buttonNextStyle = style(
       [outlineLinearGradientVar]:
       vars.colors.invertedGradientDark,
     },
+    display: 'none',
   },
 );
