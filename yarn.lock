@@ -4851,7 +4851,7 @@ __metadata:
     craco-alias: ^3.0.1
     craco-babel-loader: ^1.0.3
     css-loader: ^6.7.1
-    dotenv-cli: ^6.0.0
+    env-cmd: ^10.1.0
     file-loader: ^6.2.0
     mini-css-extract-plugin: ^2.6.1
     moment: ^2.29.4
@@ -8330,7 +8330,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^4.1.1":
+"commander@npm:^4.0.0, commander@npm:^4.1.1":
   version: 4.1.1
   resolution: "commander@npm:4.1.1"
   checksum: d7b9913ff92cae20cb577a4ac6fcc121bd6223319e54a40f51a14740a681ad5c574fd29a57da478a5f234a6fa6c52cbf0b7c641353e03c648b1ae85ba670b977
@@ -9701,20 +9701,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv-cli@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "dotenv-cli@npm:6.0.0"
-  dependencies:
-    cross-spawn: ^7.0.3
-    dotenv: ^16.0.0
-    dotenv-expand: ^8.0.1
-    minimist: ^1.2.5
-  bin:
-    dotenv: cli.js
-  checksum: 3db5a363eedd24d428001a956d9b8c72094983bfe0e0e722cda7803b614daf85dde9c9beb5d9fa28a139a5c594533ecd8f9d8430a90c244175e81c9a40abc5b1
-  languageName: node
-  linkType: hard
-
 "dotenv-expand@npm:^5.1.0":
   version: 5.1.0
   resolution: "dotenv-expand@npm:5.1.0"
@@ -9722,24 +9708,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv-expand@npm:^8.0.1":
-  version: 8.0.3
-  resolution: "dotenv-expand@npm:8.0.3"
-  checksum: 128ce90ac825b543de3ece0154a51b056ab0dc36bb26d97a68cd0b8707327ecd3c182fb6ac63b26a0fcdfa85064419906a1065cb634f1f9dc08ad311375f1fc0
-  languageName: node
-  linkType: hard
-
 "dotenv@npm:^10.0.0":
   version: 10.0.0
   resolution: "dotenv@npm:10.0.0"
   checksum: f412c5fe8c24fbe313d302d2500e247ba8a1946492db405a4de4d30dd0eb186a88a43f13c958c5a7de303938949c4231c56994f97d05c4bc1f22478d631b4005
-  languageName: node
-  linkType: hard
-
-"dotenv@npm:^16.0.0":
-  version: 16.0.1
-  resolution: "dotenv@npm:16.0.1"
-  checksum: f459ffce07b977b7f15d8cc4ee69cdff77d4dd8c5dc8c85d2d485ee84655352c2415f9dd09d42b5b5985ced3be186130871b34e2f3e2569ebc72fbc2e8096792
   languageName: node
   linkType: hard
 
@@ -9912,6 +9884,18 @@ __metadata:
   version: 2.2.0
   resolution: "entities@npm:2.2.0"
   checksum: 19010dacaf0912c895ea262b4f6128574f9ccf8d4b3b65c7e8334ad0079b3706376360e28d8843ff50a78aabcb8f08f0a32dbfacdc77e47ed77ca08b713669b3
+  languageName: node
+  linkType: hard
+
+"env-cmd@npm:^10.1.0":
+  version: 10.1.0
+  resolution: "env-cmd@npm:10.1.0"
+  dependencies:
+    commander: ^4.0.0
+    cross-spawn: ^7.0.0
+  bin:
+    env-cmd: bin/env-cmd.js
+  checksum: efef55074250f14cfc0b80c98dd98f1f056a80e1f3c7db14097ceefdd2d56c766bbb83b54c22932112707f41b36ce2e923f8015d69e62a75c12d98640b972e75
   languageName: node
   linkType: hard
 

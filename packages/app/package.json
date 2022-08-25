@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "start": "PORT=9090 craco start",
-    "build": "dotenv -e .env.production craco build",
+    "build": "env-cmd -f .env.production craco build",
     "test": "craco test",
     "eject": "craco eject",
     "lint": "eslint --ext .ts,.tsx src/ --cache",
@@ -23,6 +23,7 @@
     "@vanilla-extract/webpack-plugin": "^2.1.11",
     "axios": "^0.27.2",
     "craco-babel-loader": "^1.0.3",
+    "env-cmd": "^10.1.0",
     "file-loader": "^6.2.0",
     "moment": "^2.29.4",
     "react": "^18.2.0",
@@ -55,7 +56,6 @@
     "@types/testing-library__jest-dom": "^5",
     "craco-alias": "^3.0.1",
     "css-loader": "^6.7.1",
-    "dotenv-cli": "^6.0.0",
     "mini-css-extract-plugin": "^2.6.1",
     "ts-jest": "^28.0.5"
   }
