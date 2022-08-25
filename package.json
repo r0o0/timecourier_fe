@@ -14,7 +14,7 @@
     "test:all": "yarn workspaces foreach --parallel run test",
     "lint:all": "yarn workspaces foreach --parallel run lint",
     "format:all": "yarn workspaces foreach --parallel run format",
-    "build:all": "yarn workspaces foreach --parallel run build",
+    "build:all": "yarn app build",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
     "prepush": "prepush-if-changed"
