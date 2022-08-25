@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -6,18 +5,18 @@ import Back from '@/assets/icons/sidebar_back.svg';
 import Cansel from '@/assets/icons/sidebar_cansel.svg';
 import Open from '@/assets/icons/sidebar_menu.svg';
 
-import { SidebarData, SidebarProps } from './Sidebar.type';
-
 import {
-  backIcon, barColor,
-  canSelIcon,
+  backIcon,
+  barColor,
+  cancelIcon,
   liStyle,
   Nav,
   openIcon,
   sideBar,
   titleText,
-  ulstyle
+  ulstyle,
 } from './Sidebar.css';
+import { SidebarData, SidebarProps } from './Sidebar.type';
 
 function Sidebar(props: SidebarProps) {
   const [sidebar, setSidebar] = useState(false);
@@ -39,7 +38,7 @@ function Sidebar(props: SidebarProps) {
       <div className={barColor({ open: sidebar })}>
         <div className={sideBar({ open: sidebar })}>
           <div>
-            <button type="submit" className={canSelIcon} onClick={showSidebar}>
+            <button type="submit" className={cancelIcon} onClick={showSidebar}>
               <img alt="canSel" src={Cansel} />
             </button>
           </div>
