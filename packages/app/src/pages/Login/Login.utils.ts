@@ -8,7 +8,7 @@ expires.setMonth(expires.getMonth() + 1);
 
 const serviceToken = async (response: string) => {
   try {
-    const data = await axios.get(`/oauth/accessToken?token=${response}`);
+    const data = await axios.get(`https://api.timeletter.net/oauth/accessToken?token=${response}`);
     setCookie('token', data.data.token, { path: '/', expires });
     return data.data.username;
   } catch (e) {
