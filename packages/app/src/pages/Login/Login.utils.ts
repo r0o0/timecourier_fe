@@ -17,24 +17,13 @@ const serviceToken = async (response: string) => {
 };
 
 export const kakaoAccessToken = async (codes: string) => {
-  const makeFormData = (params: any) => {
-    const searchParams = new URLSearchParams();
-    Object.keys(params).forEach((key) => {
-      searchParams.append(key, params[key]);
-    });
-    return searchParams;
-  };
-
   try {
-    const accessToken = await axios.post(
-      `${kakaoApi.kakaoToken}`,
-      makeFormData({
-        grant_type: 'authorization_code',
-        client_id: `${kakaoApi.kakaoKey}`,
-        redirect_uri: `${localApi.localPath}/login`,
-        code: `${codes}`,
-      }),
-    );
+    const searchParams = new URLSearchParams();
+    searchParams.append('grant_type', 'authorization_code');
+    searchParams.append('client_id', `${kakaoApi.kakaoKey}`);
+    searchParams.append('redirect_uri', `${localApi.localPath}/login`);
+    searchParams.append('code', `${codes}`);
+    const accessToken = await axios.post(`${kakaoApi.kakaoToken}`, searchParams);
     setCookie('access_token', accessToken.data.access_token, { path: '/', expires });
     return serviceToken(accessToken.data.access_token);
   } catch (e) {
