@@ -2,25 +2,20 @@
 import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { kakaoApi } from '@/config';
+import env from '@/config';
 import { colorSystem } from '@timeletter_fe/components/src/styles/colors.css';
 import { fontSystem } from '@timeletter_fe/components/src/styles/fonts.css';
+import { getCookie } from '@/utils/cookies';
 
 import LoginBg from '~components/assets/icons/login_bg.svg';
 import { ReactComponent as Logo } from '~components/assets/icons/login_logo.svg';
 import { ReactComponent as KaKaoIcon } from '~components/assets/images/kakao_icon.svg';
- import LoginBorder from '~components/assets/images/login_bg_one.png';
+import LoginBorder from '~components/assets/images/login_bg_one.png';
 import { Button } from '~components/index';
 
 import LoginTimer from './TimerComponents/TimerComponents';
-import {
-  kakaoLoginStyle,
-  linkBottomStyle,
-  loginBodyStyle,
-  txtBottomStyle,
-} from './Login.css';
+import { kakaoLoginStyle, linkBottomStyle, loginBodyStyle, txtBottomStyle } from './Login.css';
 import { kakaoAccessToken } from './Login.utils';
-import { getCookie } from '@/cookie';
 
 function Login() {
   const codes = new URL(window.location.href).searchParams.get('code') || '';
@@ -59,14 +54,14 @@ function Login() {
       <img style={{ position: 'absolute', width: '100%' }} src={LoginBorder} />
       <LoginTimer />
       <Logo style={{ position: 'absolute' }} />
-      <a href={`${kakaoApi.kakaoLogin}`}>
+      <a href={env.kakaoLogin}>
         <Button
           style={{
             background: colorSystem.yellow,
             color: colorSystem.black,
             fontSize: fontSystem.body.size[3],
             gap: 10,
-            marginTop: '60%'
+            marginTop: '60%',
           }}
           className={kakaoLoginStyle}
           label="카카오로 5초만에 시작하기"
