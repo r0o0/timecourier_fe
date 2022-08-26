@@ -3,7 +3,7 @@ WORKDIR /usr/src/app
 COPY . .
 RUN yarn install
 
-RUN yarn build:all
+RUN yarn build:app
 
 
-CMD ["yarn","docker-start:all"]
+CMD ["yarn","start:app"]
