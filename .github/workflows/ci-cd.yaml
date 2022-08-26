@@ -23,6 +23,7 @@ jobs:
           echo REACT_APP_KAKAO_API_ACCESS_TOKEN=${{ secrets.REACT_APP_KAKAO_API_ACCESS_TOKEN }} >> .env.production
           echo REACT_APP_KAKAO_API_MESSAGE_URL=${{ secrets.REACT_APP_KAKAO_API_MESSAGE_URL }} >> .env.production
           echo REACT_APP_LOCAL=${{ secrets.REACT_APP_LOCAL }} >> .env.production
+          echo REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }} >> .env.production
           cat .env.production
 
 
