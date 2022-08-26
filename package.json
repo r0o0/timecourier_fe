@@ -9,12 +9,12 @@
   "scripts": {
     "app": "yarn workspace @timeletter_fe/app",
     "components": "yarn workspace @timeletter_fe/components",
-    "docker-start:all": "yarn app start",
+    "docker-start:all": "yarn workspaces foreach --parallel -i run start",
     "start:all": "concurrently --kill-others \"yarn app start\" \"yarn components start\"",
     "test:all": "yarn workspaces foreach --parallel run test",
     "lint:all": "yarn workspaces foreach --parallel run lint",
     "format:all": "yarn workspaces foreach --parallel run format",
-    "build:all": "yarn app build",
+    "build:all": "yarn workspaces foreach --parallel run build",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
     "prepush": "prepush-if-changed"
@@ -61,7 +61,7 @@
   },
   "packageManager": "yarn@3.2.1",
   "engines": {
-    "node": ">=16.16.0"
+    "node": ">16.0.0"
   },
   "browserslist": {
     "production": [
