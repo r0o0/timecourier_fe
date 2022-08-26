@@ -22,7 +22,7 @@ jobs:
           echo REACT_APP_KAKAO_API_ACCESS_TOKEN=${{ secrets.REACT_APP_KAKAO_API_ACCESS_TOKEN }} >> .env.production
           echo REACT_APP_KAKAO_API_MESSAGE_URL=${{ secrets.REACT_APP_KAKAO_API_MESSAGE_URL }} >> .env.production
           echo REACT_APP_LOCAL=${{ secrets.REACT_APP_LOCAL }} >> .env.production
-          echo REACT_APP_KAKAO_API_LOGIN_URL=${{ secrets.REACT_APP_KAKAO_API_LOGIN_URL }} >> .env.production
+          echo REACT_APP_KAKAO_API_LOGIN_URL=https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${{ secrets.REACT_APP_KAKAO_API_CLIENT_ID }}&redirect_uri=${{ secrets.REACT_APP_LOCAL }}/login >> .env.production
           echo REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }} >> .env.production
           cat .env.production
 
