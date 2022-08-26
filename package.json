@@ -21,8 +21,8 @@
 
 
     "build:storybook": "yarn components build",
-    "build:app": "yarn components build",
-    "start:storybook": "yarn app start",
+    "build:app": "yarn app build",
+    "start:storybook": "yarn components start",
     "start:app": "yarn app start"
   },
   "lint-staged": {
