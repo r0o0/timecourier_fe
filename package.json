@@ -17,7 +17,13 @@
     "build:all": "yarn workspaces foreach --parallel run build",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
-    "prepush": "prepush-if-changed"
+    "prepush": "prepush-if-changed",
+
+
+    "build:storybook": "yarn components build",
+    "build:app": "yarn components build",
+    "start:storybook": "yarn app start",
+    "start:app": "yarn app start"
   },
   "lint-staged": {
     "packages/**/src/**/*.{ts,tsx}": [

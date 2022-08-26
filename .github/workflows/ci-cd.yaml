@@ -33,9 +33,12 @@ jobs:
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker build -f Dockerfile  -t ${{ secrets.DOCKER_IMAGE_NAME }} .
+          docker build -f DockerfileStorybook  -t ${{ secrets.DOCKER_IMAGE_NAME }}-story .
           docker images -a
           docker tag ${{ secrets.DOCKER_IMAGE_NAME }} ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:latest
+          docker tag ${{ secrets.DOCKER_IMAGE_NAME }}-story ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}-story:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}-story:latest
      
       - name: Deploy
         uses: appleboy/ssh-action@master
@@ -47,9 +50,13 @@ jobs:
           script: |
             sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}-story
             sudo docker stop ${{ secrets.DOCKER_IMAGE_NAME }}
             sudo docker rm ${{ secrets.DOCKER_IMAGE_NAME }}
-            sudo docker run --name ${{ secrets.DOCKER_IMAGE_NAME }} -d --network="host" ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}
+            sudo docker stop ${{ secrets.DOCKER_IMAGE_NAME }}-story
+            sudo docker rm ${{ secrets.DOCKER_IMAGE_NAME }}-story
+            sudo docker run --name ${{ secrets.DOCKER_IMAGE_NAME }} -d -p 9090:9090 ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}
+            sudo docker run --name ${{ secrets.DOCKER_IMAGE_NAME }}-story -d -p 9009:9009 ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}-story
             sudo docker rmi $(sudo docker images --filter "dangling=true" -q --no-trunc)
       
       - name: slack-action-success
