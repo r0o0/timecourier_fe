@@ -51,7 +51,7 @@ function Login() {
       }}
       className={loginBodyStyle}
     >
-      <img style={{ position: 'absolute', width: '100%' }} src={LoginBorder} />
+      <img style={{ position: 'absolute', maxWidth: '100%' }} src={LoginBorder} />
       <LoginTimer />
       <Logo style={{ position: 'absolute' }} />
       <a href={env.kakaoLogin}>

@@ -17,7 +17,7 @@ export const sideBarMenuList: Record<string, SidebarMenuItem[]> = {
   ],
   sub: [
     {
-      title: '이용갹관',
+      title: '이용약관',
       path: '/letterAbout',
     },
     {

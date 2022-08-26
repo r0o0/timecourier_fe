@@ -12,19 +12,24 @@ function Nav() {
   const [showSideBar, setShowSideBar] = useState(false);
 
   const handleMenuIconClick = () => setShowSideBar(!showSideBar);
-
+  // TODO: Heading 부분 로고 이미지 교체 요청
   return (
-    <>
-      <div className={navStyle}>
+    <header>
+      <nav className={navStyle}>
         <Heading size={3} color="white">
           타임레터
         </Heading>
-        <Button className={navMenuStyle} onClick={handleMenuIconClick} iconOnly>
+        <Button
+          className={navMenuStyle}
+          variant="transparent"
+          onClick={handleMenuIconClick}
+          iconOnly
+        >
           <MenuIcon />
         </Button>
-      </div>
+      </nav>
       <SideBar open={showSideBar} onClose={handleMenuIconClick} />
-    </>
+    </header>
   );
 }
 
