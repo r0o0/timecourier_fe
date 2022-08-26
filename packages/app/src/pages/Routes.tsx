@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Route, Routes as Switch, useNavigate } from 'react-router-dom';
+import { Route, useNavigate } from 'react-router-dom';
 
 import { getCookie } from '@/utils/cookies';
 
@@ -20,14 +20,14 @@ function Routes() {
   }, []);
 
   return (
-    <Switch>
+    <>
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<Main />} />
       <Route path="/reminder" element={<Reminder />} />
       <Route path="/myPage" element={<MyPage />} />
       <Route path="/intro" element={<LoginIntro />} />
       <Route path="/letterBox" element={<LetterBox />} />
-    </Switch>
+    </>
   );
 }
 
