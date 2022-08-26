@@ -10,7 +10,7 @@ import Main from './Main/Main';
 import MyPage from './MyPage/MyPage';
 import Reminder from './Reminder/Reminder';
 
-function Routers() {
+function Routes() {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,4 +31,4 @@ function Routers() {
   );
 }
 
-export default Routers;
+export default Routes;
