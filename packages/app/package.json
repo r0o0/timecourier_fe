@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "start": "PORT=9090 craco start",
-    "build": "env-cmd -f .env.production craco build",
+    "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
     "lint": "eslint --ext .ts,.tsx src/ --cache",
@@ -23,7 +23,6 @@
     "@vanilla-extract/webpack-plugin": "^2.1.11",
     "axios": "^0.27.2",
     "craco-babel-loader": "^1.0.3",
-    "env-cmd": "^10.1.0",
     "file-loader": "^6.2.0",
     "moment": "^2.29.4",
     "react": "^18.2.0",
