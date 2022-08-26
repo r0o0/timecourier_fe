@@ -12,11 +12,11 @@ function SideBar(props: SideBarProps) {
 
   return (
     <div className={sideBarStyle}>
-      <Button onClick={onClose}>
+      <Button onClick={onClose} variant="transparent">
         <CancelIcon />
       </Button>
       <ul>
-        {sideBarMenuList.map((item) => (
+        {sideBarMenuList.main.map((item) => (
           <li key={item.title}>
             <Link to={item.path}>{item.title}</Link>
           </li>
