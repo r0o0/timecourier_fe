@@ -1,12 +1,5 @@
-import { globalStyle, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 
-import { vars } from '~components/styles/global.css';
-
-globalStyle('a', {
-  padding: 0,
-  margin: 0,
-  color: '#FFFFFF',
-});
 // Nav 쪽
 export const Nav = style({
   width: '100%',
@@ -18,20 +11,20 @@ export const Nav = style({
   marginTop: '10px',
 });
 
-globalStyle('ul li', {
-  display: 'table-row',
-  fontFamily: vars.fonts.display.family,
-  fontSize: vars.fonts.display.size[2],
-  width: '50%',
-  height: '41px',
-  float: 'left',
-  textAlign: 'center',
-  lineHeight: '40px',
-  fontWeight: '700',
-  flexDirection: 'row',
-  alignItems: 'center',
-});
-// Nav 쪽
+// TODO global style 제거
+// globalStyle('ul li', {
+//   display: 'table-row',
+//   fontFamily: vars.fonts.display.family,
+//   fontSize: vars.fonts.display.size[2],
+//   width: '50%',
+//   height: '41px',
+//   float: 'left',
+//   textAlign: 'center',
+//   lineHeight: '40px',
+//   fontWeight: '700',
+//   flexDirection: 'row',
+//   alignItems: 'center',
+// });
 
 export const letterBody = style({
   width: '100%',
