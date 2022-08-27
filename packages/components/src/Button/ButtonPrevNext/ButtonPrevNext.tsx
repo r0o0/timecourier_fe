@@ -20,6 +20,7 @@ export function ButtonPrev(props: ButtonNextProps) {
         className,
       )}
       borderColor="gradient"
+      iconOnly
     >
       <ArrowGradientPrev />
     </Button>
@@ -37,6 +38,7 @@ export function ButtonNext(props: ButtonNextProps) {
         className,
       )}
       borderColor="gradient"
+      iconOnly
     >
       <ArrowGradientNext />
     </Button>

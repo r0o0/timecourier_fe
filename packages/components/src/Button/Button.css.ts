@@ -3,6 +3,7 @@ import { recipe } from '@vanilla-extract/recipes';
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 
 import { vars } from '../styles/global.css';
+import { setStackOrder } from '../styles/tools';
 
 const buttonSize = {
   large: '64px',
@@ -43,7 +44,10 @@ export const buttonStyle = style({
   justifyContent: 'center',
   fontWeight: 600,
   cursor: 'pointer',
+  color: vars.colors.white,
 });
+
+export const buttonStackOrderStyle = style({ zIndex: setStackOrder('interaction') });
 
 export const buttonRecipe = recipe({
   base: { borderWidth: 0 },
@@ -78,7 +82,7 @@ export const buttonRecipe = recipe({
           height: 'inherit',
           background: vars.colors.primary,
           borderRadius: 'inherit',
-          zIndex: -2,
+          zIndex: setStackOrder('interaction') - 2,
         },
         '::after': {
           content: '',
@@ -90,7 +94,7 @@ export const buttonRecipe = recipe({
           background: vars.colors.gradientDark,
           transition: `opacity ${vars.transitions.duration.fast} ${vars.transitions.timing.easeOut}`,
           borderRadius: 'inherit',
-          zIndex: -1,
+          zIndex: setStackOrder('interaction') - 1,
           opacity: 0,
         },
         selectors: { '&:hover:after': { opacity: 1 } },
