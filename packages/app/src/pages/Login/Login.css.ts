@@ -4,29 +4,12 @@ import { vars } from '~components/styles/global.css';
 
 export const loginBodyStyle = style({
   position: 'relative',
-  top: '0',
   width: '360px',
-  height: '100vh',
+  height: '100%',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   margin: 'auto',
-  justifyContent: 'center',
-});
-
-export const iconOneStyle = style({
-  width: '100%',
-  height: 600,
-  zIndex: -1,
-  justifyContent: 'center',
-  display: 'flex',
-});
-
-export const bodySizeStyle = style({
-  width: '100%',
-  height: '10%',
-  display: 'flex',
-  alignItems: 'center',
   justifyContent: 'center',
 });
 

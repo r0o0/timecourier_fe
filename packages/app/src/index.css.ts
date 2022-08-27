@@ -7,23 +7,27 @@ globalStyle('body', {
   fontFamily: vars.fonts.body.family,
   WebkitFontSmoothing: 'antialiased',
   MozOsxFontSmoothing: 'grayscale',
-  padding: 0,
   margin: 0,
-  display: 'flex',
-  justifyContent: 'center',
+  padding: 0,
 });
 
-globalStyle('a', {
-  padding: 0,
+globalStyle('body *', {
   margin: 0,
-  color: '#FFFFFF',
+  padding: 0,
 });
+
+globalStyle('a', { color: '#FFFFFF' });
+
+globalStyle('ul', { listStyle: 'none' });
+
+globalStyle('li', { listStyle: 'none' });
 
 globalStyle('#root', {
-  width: 360,
+  width: '100%',
   minHeight: '100vh',
   overflow: 'hidden',
   margin: '0 auto',
-  alignItems: 'center',
-  backgroundColor: '#26242E',
+  backgroundColor: vars.colors.black,
+
+  '@media': { 'screen and (min-width: 768px)': { width: 360 } },
 });
