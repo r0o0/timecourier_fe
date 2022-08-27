@@ -1,39 +1,44 @@
 import { colorSystem } from '@timeletter_fe/components/src/styles/colors.css';
-import { style } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { vars } from '~components/styles/global.css';
+import { spacing } from '~components/styles/tools';
 
-export const backGroundRecipe = recipe({
+export const sideBarStyle = style({
+  position: 'absolute',
+  top: 0,
+  width: '100%',
+  height: '100vh',
+});
+
+export const backdropRecipe = recipe({
   base: {
-    position: 'fixed',
-    top: '0px',
-    width: 360,
+    position: 'absolute',
+    width: '100%',
     height: '100%',
-    zIndex: -1,
-    backgroundColor: 'rgba(23, 23, 23, 0.5)',
   },
   variants: {
     visible: {
-      true: {
-        backgroundColor: 'rgba(23, 23, 23, 0.5)',
-        overflow: 'visible',
-        zIndex: '1',
-      },
-      false: { zIndex: -1, backgroundColor: 'rgba(0, 0, 0, 0)', overflow: 'hidden' },
+      true: { backgroundColor: 'rgba(23, 23, 23, 0.5)', display: 'block' },
+      false: { backgroundColor: 'transparent', display: 'none' },
     },
   },
 });
 
 export const sideBarRecipe = recipe({
   base: {
-    backgroundColor: '#8055FA',
     position: 'absolute',
-    filter: 'drop-shadow(-20px 0px 24px rgba(0, 0, 0, 0.15))',
+    display: 'flex',
+    flexDirection: 'column',
+    padding: `56px ${spacing(20)} 0`,
+    zIndex: 1,
     right: '0',
+    backgroundColor: vars.colors.primary,
+    filter: 'drop-shadow(-20px 0px 24px rgba(0, 0, 0, 0.15))',
     height: '100%',
     width: '300px',
-    transition: 'transform 0.5s ease-in-out',
+    transition: `transform ${vars.transitions.duration.fast} ${vars.transitions.timing.easeOut}`,
   },
   variants: {
     visible: {
@@ -44,42 +49,21 @@ export const sideBarRecipe = recipe({
 });
 
 export const cancelIconStyle = style({
-  position: 'absolute',
-  top: '7px',
-  right: '6%',
+  alignSelf: 'flex-end',
+  right: `${spacing(20)}`,
   height: '40px',
   width: '40px',
   color: colorSystem.white,
 });
 
-export const ulStyle = style({
-  paddingLeft: 20,
-  paddingTop: '6rem',
+export const sideBarMenuListStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 24,
+  marginTop: 52,
+  fontWeight: 700,
 });
 
-export const mainliStyle = style({
-  margin: '5px auto',
-  textAlign: 'left',
-  width: '100%',
-  font: vars.fonts.body.family,
-  fontSize: vars.fonts.body.size[4],
-  lineHeight: vars.fonts.body.lineHeight[4],
-});
+globalStyle(`${sideBarMenuListStyle} li:nth-child(4)`, { marginTop: 84 });
 
-export const subliStyle = style({
-  margin: '5px auto',
-  textAlign: 'left',
-  width: '100%',
-  font: vars.fonts.body.family,
-  fontSize: vars.fonts.body.size[2],
-  lineHeight: vars.fonts.body.lineHeight[2],
-});
-
-export const logoutStyle = style({
-  margin: '0px auto',
-  textAlign: 'left',
-  width: '100%',
-  font: vars.fonts.body.family,
-  fontSize: vars.fonts.body.size[2],
-  lineHeight: vars.fonts.body.lineHeight[2],
-});
+export const logoutStyle = style({ width: 'fit-content', marginTop: 64, fontWeight: 400 });

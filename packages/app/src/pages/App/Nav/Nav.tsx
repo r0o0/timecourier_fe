@@ -6,21 +6,22 @@ import { Button, Heading } from '~components/index';
 
 import SideBar from '../SideBar/SideBar';
 
-import { navMenuStyle, navStyle } from './Nav.css';
+import { navButtonStyle, navStyle, navWrapperStyle } from './Nav.css';
 
 function Nav() {
   const [showSideBar, setShowSideBar] = useState(false);
 
   const handleMenuIconClick = () => setShowSideBar(!showSideBar);
+
   // TODO: Heading 부분 로고 이미지 교체 요청
   return (
-    <header>
+    <header className={navWrapperStyle}>
       <nav className={navStyle}>
         <Heading size={3} color="white">
           타임레터
         </Heading>
         <Button
-          className={navMenuStyle}
+          className={navButtonStyle}
           variant="transparent"
           onClick={handleMenuIconClick}
           iconOnly
@@ -28,6 +29,7 @@ function Nav() {
           <MenuIcon />
         </Button>
       </nav>
+
       <SideBar open={showSideBar} onClose={handleMenuIconClick} />
     </header>
   );
