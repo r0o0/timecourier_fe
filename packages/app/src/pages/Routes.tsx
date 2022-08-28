@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { Route, Routes as Switch, useLocation, useNavigate } from 'react-router-dom';
 
 import App from '@/pages/App/App';
-import { getCookie } from '@/utils/cookies';
+
+import { getCookie } from '~utils/cookies';
 
 import LetterBox from './LetterBox/LetterBox';
 import Login from './Login/Login';
@@ -23,11 +24,13 @@ function Routes() {
   return (
     <Switch>
       <Route path="/login" element={<Login />} />
-      <Route path="/" element={<App />} />
-      <Route path="/reminder" element={<Reminder />} />
-      <Route path="/myPage" element={<MyPage />} />
       <Route path="/intro" element={<LoginIntro />} />
-      <Route path="/letterBox" element={<LetterBox />} />
+
+      <Route path="/" element={<App />}>
+        <Route path="/reminder" element={<Reminder />} />
+        <Route path="/myPage" element={<MyPage />} />
+        <Route path="/letterBox" element={<LetterBox />} />
+      </Route>
     </Switch>
   );
 }
