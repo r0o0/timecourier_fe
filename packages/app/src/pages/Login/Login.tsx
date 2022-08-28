@@ -57,7 +57,6 @@ function Login() {
       <a href={env.kakaoLogin}>
         <Button
           style={{
-            background: colorSystem.yellow,
             color: colorSystem.black,
             fontSize: fontSystem.body.size[3],
             gap: 10,
@@ -66,8 +65,8 @@ function Login() {
           className={kakaoLoginStyle}
           label="카카오로 5초만에 시작하기"
           size="small"
-          variant="solid"
           iconPosition="left"
+          background="yello"
           color={colorSystem.black}
         >
           <KaKaoIcon />
