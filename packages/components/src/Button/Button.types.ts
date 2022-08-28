@@ -10,9 +10,10 @@ type IconPosition = 'left' | 'right';
 
 type ButtonAttributes = JSX.IntrinsicElements['button'];
 
-interface ButtonCommonProps extends ButtonAttributes {
+interface ButtonCommonProps extends Omit<ButtonAttributes, 'children'> {
   size?: ButtonSize;
-  label?: string;
+  label: string;
+  children?: ReactElement;
 }
 
 export type OutlineVariantProps = ButtonCommonProps & {
@@ -33,7 +34,7 @@ export type TransparentVariantProps = ButtonCommonProps & {
 
 export type ButtonVariantProps = SolidVariantProps | OutlineVariantProps | TransparentVariantProps;
 
-export type IconOnlyProps = Omit<ButtonVariantProps, 'children' | 'label'> & {
+export type IconOnlyProps = Omit<ButtonVariantProps, 'label'> & {
   iconOnly: true;
   children: ReactElement;
   label?: undefined;
@@ -45,5 +46,5 @@ export type WithIconProps = ButtonVariantProps & {
 export type ButtonProps = Omit<ButtonVariantProps, 'label'> & {
   iconOnly?: unknown;
   iconPosition?: unknown;
-  label?: unknown;
+  label?: string;
 };

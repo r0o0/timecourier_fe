@@ -4,7 +4,9 @@ import { calc } from '@vanilla-extract/css-utils';
 export const important = (css: string | number) => `${css} !important`;
 
 // colors
-export const createOutlineGradientBackgroundImage = (bgColor: string, gradient: string) => `linear-gradient(${bgColor}, ${bgColor}), ${gradient}`;
+export const createOutlineGradientBackgroundImage = (bgColor: string, gradient: string) =>
+  `linear-gradient(${bgColor}, ${bgColor}),${gradient}`;
+
 const opacityHex = {
   100: 'FF',
   99: 'FC',
@@ -108,7 +110,13 @@ const opacityHex = {
   1: '03',
   0: '00',
 };
-export const createHexWithOpacity = (color: string, value: keyof typeof opacityHex) => `${color}${opacityHex[value]}`;
+export const createHexWithOpacity = (color: string, value: keyof typeof opacityHex) =>
+  `${color}${opacityHex[value]}`;
 
 // spacing
 export const spacing = (px: number) => calc(px).divide(360).multiply('100%');
+
+// z-index
+const stackOrderType = { default: 0, dialog: 20, interaction: 30 };
+export type StackOrderType = 'default' | 'dialog' | 'interaction';
+export const setStackOrder = (type: StackOrderType = 'default') => stackOrderType[type];

@@ -1,7 +1,9 @@
+import { cloneElement, isValidElement } from 'react';
 import classNames from 'classnames';
+import { gradientOutlineRecipe } from 'styles/gradient.css';
 
 import { ButtonNext, ButtonPrev } from './ButtonPrevNext/ButtonPrevNext';
-import { buttonRecipe, buttonSprinkles, buttonStyle } from './Button.css';
+import { buttonRecipe, buttonSprinkles, buttonStackOrderStyle, buttonStyle } from './Button.css';
 import { ButtonProps, IconOnlyProps, WithIconProps } from './Button.types';
 import { getBackground } from './Button.utils';
 
@@ -15,24 +17,26 @@ function Button(props: ButtonProps) {
     iconPosition = 'right',
     iconOnly,
     label,
-    variant = 'solid',
+    variant: variantFromParent,
     background: backgroundFromParent,
     borderColor: borderColorFromParent,
     ...rest
   } = props;
 
+  const variant =
+    backgroundFromParent && !variantFromParent ? undefined : variantFromParent || 'solid';
   const width = iconOnly ? sizeFromParent : 'parent';
+  const size = variant === 'transparent' ? 'custom' : sizeFromParent;
+  const borderColor = variant === 'outline' ? borderColorFromParent : undefined;
   const background = getBackground(
     variant,
     'background' in props ? backgroundFromParent : undefined,
   );
-  const borderColor = variant === 'outline' ? borderColorFromParent : undefined;
-  const size = variant === 'transparent' ? 'custom' : sizeFromParent;
 
-  // TODO 아래 문제 타입 에러가 왜 나는지 확인 필요
+  const iconElement =
+    isValidElement(children) && cloneElement(children, { className: buttonStackOrderStyle });
+
   return (
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     <button
       {...rest}
       type={type}
@@ -45,12 +49,13 @@ function Button(props: ButtonProps) {
           background,
           borderColor: 'borderColor' in props ? borderColor : undefined,
         }),
+        borderColor === 'gradient' && gradientOutlineRecipe({ background: 'white' }),
         rest.className,
       )}
     >
-      {iconPosition === 'left' && children}
-      {label}
-      {iconPosition === 'right' && children}
+      {iconPosition === 'left' && iconElement}
+      {label && <span className={buttonStackOrderStyle}>{label}</span>}
+      {iconPosition === 'right' && iconElement}
     </button>
   );
 }

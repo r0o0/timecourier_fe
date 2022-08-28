@@ -1,0 +1,34 @@
+<svg width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <mask id="caution_svg__b" width="100" height="100" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha">
+    <circle cx="50" cy="50" r="50" fill="url(#caution_svg__a)"/>
+  </mask>
+  <g mask="url(#caution_svg__b)">
+    <path fill="url(#caution_svg__c)" d="M-1 0h101v100H-1z"/>
+    <circle cx="50" cy="50" r="49.5" stroke="url(#caution_svg__d)"/>
+    <path fill="url(#caution_svg__e)" d="M54.4 52.563a3.4 3.4 0 0 1-3.394 3.187h-2.012a3.4 3.4 0 0 1-3.394-3.188l-1.374-21.95A3.4 3.4 0 0 1 47.62 27h4.76a3.4 3.4 0 0 1 3.394 3.612L54.4 52.562Z"/>
+    <rect width="12" height="11.5" x="56" y="73" fill="url(#caution_svg__f)" rx="5.75" transform="rotate(-180 56 73)"/>
+  </g>
+  <defs>
+    <linearGradient id="caution_svg__a" x1="0" x2="95" y1="7.5" y2="84.5" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A788FF"/>
+      <stop offset="1" stop-color="#F5B5FF"/>
+    </linearGradient>
+    <linearGradient id="caution_svg__c" x1="-1" x2="94.191" y1="7.5" y2="85.427" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FEFFC0"/>
+      <stop offset="1" stop-color="#FFC5E1"/>
+    </linearGradient>
+    <linearGradient id="caution_svg__d" x1="110" x2="19" y1="110.5" y2="8.5" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF7E7E"/>
+      <stop offset=".464" stop-color="#FFA4D5"/>
+      <stop offset="1" stop-color="#FFDEF0"/>
+    </linearGradient>
+    <linearGradient id="caution_svg__e" x1="56" x2="44.912" y1="57.313" y2="12.96" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF4B8C"/>
+      <stop offset="1" stop-color="#FF4B8C" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="caution_svg__f" x1="56" x2="57.866" y1="72.375" y2="91.038" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF4B8C"/>
+      <stop offset="1" stop-color="#FF4B8C" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>
