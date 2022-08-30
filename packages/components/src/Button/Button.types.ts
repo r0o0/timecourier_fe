@@ -34,6 +34,10 @@ export type TransparentVariantProps = ButtonCommonProps & {
 
 export type ButtonVariantProps = SolidVariantProps | OutlineVariantProps | TransparentVariantProps;
 
+export type WithChildrenProps = Omit<ButtonVariantProps, 'label'> & {
+  label?: string;
+  children: ReactElement;
+};
 export type IconOnlyProps = Omit<ButtonVariantProps, 'label'> & {
   iconOnly: true;
   children: ReactElement;
