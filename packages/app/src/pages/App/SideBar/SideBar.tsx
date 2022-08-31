@@ -27,6 +27,7 @@ function SideBar(props: SideBarProps) {
           tabIndex={tabIndex}
           className={cancelIconStyle}
           onClick={onClose}
+          label=""
           variant="transparent"
         >
           <CancelIcon />
@@ -51,7 +52,7 @@ function SideBar(props: SideBarProps) {
             </li>
           ))}
           <li className={logoutStyle}>
-            <Button tabIndex={tabIndex} variant="transparent">
+            <Button label="" tabIndex={tabIndex} variant="transparent">
               <Text as="span" size={2} color="white">
                 로그아웃
               </Text>
