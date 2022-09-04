@@ -1,5 +1,4 @@
-import Sample from '@/assets/icons/letter-sample.svg';
-
+import Sample from '~/assets/icons/letter-sample.svg';
 import { MailBox, ProgressBar } from '~components/index';
 
 import { letterBody } from './LetterBox.css';
