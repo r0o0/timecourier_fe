@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { Route, Routes as Switch, useLocation, useNavigate } from 'react-router-dom';
 
-import App from '@/pages/App/App';
-
+import App from '~/pages/App/App';
 import { getCookie } from '~utils/cookies';
 
 import LetterBox from './LetterBox/LetterBox';
@@ -19,6 +18,9 @@ function Routes() {
   useEffect(() => {
     if (!getCookie('token') && location.pathname !== '/login') {
       navigate('/login', { replace: true });
+    }
+    if (getCookie('token') && location.pathname === '/login') {
+      navigate('/', { replace: true });
     }
   }, [location]);
 
