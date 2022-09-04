@@ -18,8 +18,6 @@
     "prepare": "husky install",
     "lint-staged": "lint-staged",
     "prepush": "prepush-if-changed",
-
-
     "build:storybook": "yarn components build",
     "build:app": "yarn app build",
     "start:storybook": "yarn components start",

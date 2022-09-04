@@ -10207,6 +10207,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["craco-babel-loader", "virtual:6a76ec3121eb9de82dd4e890cf40b05eedeeb0200342c83534875b34309a39ee505770c9a33083c3008153bf65404d15587393000d7508463cf72575bcb28bb1#npm:1.0.3"],\
             ["css-loader", "virtual:6a76ec3121eb9de82dd4e890cf40b05eedeeb0200342c83534875b34309a39ee505770c9a33083c3008153bf65404d15587393000d7508463cf72575bcb28bb1#npm:6.7.1"],\
             ["file-loader", "virtual:6a76ec3121eb9de82dd4e890cf40b05eedeeb0200342c83534875b34309a39ee505770c9a33083c3008153bf65404d15587393000d7508463cf72575bcb28bb1#npm:6.2.0"],\
+            ["localforage", "npm:1.10.0"],\
             ["mini-css-extract-plugin", "virtual:6a76ec3121eb9de82dd4e890cf40b05eedeeb0200342c83534875b34309a39ee505770c9a33083c3008153bf65404d15587393000d7508463cf72575bcb28bb1#npm:2.6.1"],\
             ["moment", "npm:2.29.4"],\
             ["react", "npm:18.2.0"],\
@@ -19819,6 +19820,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["immediate", [\
+        ["npm:3.0.6", {\
+          "packageLocation": "./.yarn/cache/immediate-npm-3.0.6-c27588a2d3-f9b3486477.zip/node_modules/immediate/",\
+          "packageDependencies": [\
+            ["immediate", "npm:3.0.6"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["immer", [\
         ["npm:9.0.15", {\
           "packageLocation": "./.yarn/cache/immer-npm-9.0.15-6c734225db-92e3d63e81.zip/node_modules/immer/",\
@@ -21819,6 +21829,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["lie", [\
+        ["npm:3.1.1", {\
+          "packageLocation": "./.yarn/cache/lie-npm-3.1.1-91350720d9-6da9f2121d.zip/node_modules/lie/",\
+          "packageDependencies": [\
+            ["lie", "npm:3.1.1"],\
+            ["immediate", "npm:3.0.6"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["lilconfig", [\
         ["npm:2.0.5", {\
           "packageLocation": "./.yarn/cache/lilconfig-npm-2.0.5-ba2b9195a0-f7bb9e4265.zip/node_modules/lilconfig/",\
@@ -21951,6 +21971,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/loader-utils-npm-3.2.0-02250d00d7-c7b9a8dc4b.zip/node_modules/loader-utils/",\
           "packageDependencies": [\
             ["loader-utils", "npm:3.2.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["localforage", [\
+        ["npm:1.10.0", {\
+          "packageLocation": "./.yarn/cache/localforage-npm-1.10.0-cf9ea9a436-f2978b434d.zip/node_modules/localforage/",\
+          "packageDependencies": [\
+            ["localforage", "npm:1.10.0"],\
+            ["lie", "npm:3.1.1"]\
           ],\
           "linkType": "HARD"\
         }]\
