@@ -1,11 +1,14 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 
-import Routes from '@/pages/Routes';
+import { QueryClientProvider } from '@tanstack/react-query';
 
 import '~components/styles/localFonts.css';
+import Routes from '~/pages/Routes';
 
+import queryClient from './queryClient';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
@@ -15,7 +18,11 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <StrictMode>
     <BrowserRouter>
-      <Routes />
+      <QueryClientProvider client={queryClient}>
+        <RecoilRoot>
+          <Routes />
+        </RecoilRoot>
+      </QueryClientProvider>
     </BrowserRouter>
   </StrictMode>,
 );
