@@ -1,4 +1,19 @@
 declare namespace APISchema {
+  type LetterFormType = 'DRAFT' | 'DONE';
+
+  interface Letter {
+    userID?: string;
+    senderName?: string;
+    receiverName?: string;
+    receivedDate?: string; // "yyyy-MM-dd HH:mm:ss"
+    content?: string;
+    id?: string;
+    imageId?: string;
+    letterStatus?: LetterFormType;
+    receivedPhoneNumber?: string;
+    title?: string;
+  }
+
   interface User {
     id: string;
     username: string;

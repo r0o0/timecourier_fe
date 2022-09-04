@@ -38,5 +38,5 @@ export const useAddLetter = () => {
       // TODO add notification toast
       console.error(error);
     },
-  }).mutate;
+  }).mutateAsync;
 };

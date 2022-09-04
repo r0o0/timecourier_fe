@@ -10,6 +10,7 @@ export const letterFormStyle = style({
   flexDirection: 'column',
   justifyContent: 'space-between',
   height: '100%',
+  paddingTop: '8px',
 });
 
 export const letterFormContentStyle = style({

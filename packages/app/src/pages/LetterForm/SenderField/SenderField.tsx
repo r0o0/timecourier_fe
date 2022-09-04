@@ -12,6 +12,10 @@ function SenderField() {
     setLetterForm({ ...letterForm, senderName: value });
   };
 
+  if (!letterForm.senderName) {
+    return null;
+  }
+
   return (
     <div>
       <NameField

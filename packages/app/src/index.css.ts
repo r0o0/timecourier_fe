@@ -23,6 +23,9 @@ globalStyle('ul', { listStyle: 'none' });
 globalStyle('li', { listStyle: 'none' });
 
 globalStyle('#root', {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
   width: '100%',
   height: '100vh',
   minHeight: '100vh',

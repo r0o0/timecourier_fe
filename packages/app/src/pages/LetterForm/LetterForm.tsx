@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
-import { state } from '~/store';
+import { userState } from '~/store/user.atoms';
 import { Button, ProgressBar } from '~components/index';
 
 import LetterFormContent from './LetterFormContent/LetterFormContent';
@@ -17,18 +17,21 @@ import { useAddLetter, useValidateLetterForm } from './LetterForm.hooks';
 const totalSteps = 5;
 
 function LetterForm() {
-  const { nickname, username, id: userID } = useRecoilValue(state.user);
+  const user = useRecoilValue(userState);
   const [letterForm, setLetterForm] = useRecoilState(letterFormState);
 
   const [step, setStep] = useState<number>(1);
 
   useEffect(() => {
-    setLetterForm((prev) => ({
-      ...prev,
-      userID,
-      senderName: nickname ?? username,
-    }));
-  }, []);
+    if (!user) {
+      return;
+    }
+    setLetterForm({
+      ...letterForm,
+      userID: user.id,
+      senderName: user.name,
+    });
+  }, [user.name, user.id]);
 
   const validateLetterForm = useValidateLetterForm(step);
   const addLetter = useAddLetter();
@@ -59,11 +62,8 @@ function LetterForm() {
         )}
         <Button.Next
           className={letterFormActionButtonStyle}
+          style={{ marginLeft: 'auto' }}
           onClick={handleNextClick}
-          style={{
-            marginLeft: 'auto',
-            alignSelf: 'flex-end',
-          }}
         />
       </div>
     </div>
