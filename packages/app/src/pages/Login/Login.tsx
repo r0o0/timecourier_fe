@@ -21,7 +21,7 @@ import LoginTimer from './TimerComponents/TimerComponents';
 import { kakaoLoginStyle, linkBottomStyle, loginBodyStyle, txtBottomStyle } from './Login.css';
 import { useGetKakaoAccessToken } from './Login.hooks';
 
-const expires = moment().add(1, 'M').toDate();
+const expires = moment().add(1, 'y').toDate();
 
 function Login() {
   const codeRef = useRef<string | null>(new URL(window.location.href).searchParams.get('code'));
