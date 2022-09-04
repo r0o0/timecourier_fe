@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 import { useMutation } from '@tanstack/react-query';
 
 import { letterAPI } from '~/api';
+import { NotificationToaster } from '~components/index';
 
 import { useValidateNameField } from './NameField/NameField.hooks';
 import { letterFormState } from './LetterForm.atoms';
@@ -28,15 +29,11 @@ export const useAddLetter = () => {
   const [letterForm, setLetterForm] = useRecoilState(letterFormState);
 
   return useMutation(() => letterAPI.addLetter(letterForm), {
-    onSuccess: ({ data }) => {
-      if (!data) {
-        return;
-      }
-      setLetterForm({ ...letterForm, id: data[0].id });
+    onSuccess: (data) => {
+      setLetterForm({ ...letterForm, id: data[0]?.id });
     },
-    onError: (error) => {
-      // TODO add notification toast
-      console.error(error);
+    onError: () => {
+      NotificationToaster.show('편지 저장에 실패했습니다.');
     },
   }).mutateAsync;
 };

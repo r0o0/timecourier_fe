@@ -6,6 +6,6 @@ export const authAPI = {
 };
 
 export const letterAPI = {
-  addLetter: (letterPostRequest: APISchema.Letter) =>
-    instance.post('/v1/letter', letterPostRequest),
+  addLetter: (letterPostReq: APISchema.Letter) =>
+    instance.post<void, APISchema.Letter[]>('/v1/letter', letterPostReq),
 };
