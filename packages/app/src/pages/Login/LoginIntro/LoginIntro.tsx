@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
+import { state } from '~/store';
 import { Button, Heading, Text } from '~components/index';
 
 import IntroText from '../IntroText/IntroText';
@@ -8,13 +10,12 @@ import IntroText from '../IntroText/IntroText';
 import { introBodyStyle } from './LoginIntro.css';
 import { LoginIntroType } from './LoginIntro.types';
 
-// TODO: api 통신 후 mock 데이터 제거하기
 // TODO: 뛰어씌 필요한 부분 {} 수정 --> nbsp -> {' '} 변경시 코드 복잡성 증가
-export const introValue = (nickName = '우영우님') => ({
+export const introValue = (name: string) => ({
   intro1: (
     <Heading size={2} color="white">
       <Text as="span" size={4} color="secondary" asHeadingFont>
-        {nickName}님
+        {name}님
       </Text>
       {', 만나서 반가워요. \n'}
       {'타임캡슐 편지 서비스 타임레터는 \n'}
@@ -60,6 +61,7 @@ export const buttonValue = () => ({
 });
 
 function LoginIntro() {
+  const { name } = useRecoilValue(state.user);
   const [introStep, setIntroStep] = useState<number>(1);
   const intro = `intro${introStep}` as LoginIntroType;
 
@@ -68,7 +70,6 @@ function LoginIntro() {
   };
 
   // TODO nickName 을 컴포넌트 props 로 전달 받는 방법 or 상태 관리 툴 사용
-  // const nickName = location.state?.nickName;
   const navigate = useNavigate();
   useEffect(() => {
     if (introStep > 3) {
@@ -82,7 +83,7 @@ function LoginIntro() {
 
   return (
     <div className={introBodyStyle}>
-      <IntroText>{introValue()[intro]}</IntroText>
+      <IntroText>{introValue(name || '-')[intro]}</IntroText>
 
       <Button
         style={{ background: '#8055FA', width: '200px' }}
