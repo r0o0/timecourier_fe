@@ -10,6 +10,7 @@ export const sideBarStyle = style({
   top: 0,
   width: '100%',
   height: '100vh',
+  pointerEvents: 'none',
 });
 
 export const backdropRecipe = recipe({
@@ -39,6 +40,7 @@ export const sideBarRecipe = recipe({
     height: '100%',
     width: '300px',
     transition: `transform ${vars.transitions.duration.fast} ${vars.transitions.timing.easeOut}`,
+    pointerEvents: 'auto',
   },
   variants: {
     visible: {
