@@ -5,6 +5,7 @@ import App from '~/pages/App/App';
 import { getCookie } from '~utils/cookies';
 
 import LetterBox from './LetterBox/LetterBox';
+import LetterForm from './LetterForm/LetterForm';
 import Login from './Login/Login';
 import LoginIntro from './Login/LoginIntro/LoginIntro';
 import Main from './Main/Main';
@@ -31,9 +32,13 @@ function Routes() {
 
       <Route path="/" element={<App />}>
         <Route path="/" element={<Main />} />
-        <Route path="/reminder" element={<Reminder />} />
-        <Route path="/myPage" element={<MyPage />} />
-        <Route path="/letterBox" element={<LetterBox />} />
+        <Route path="reminder" element={<Reminder />} />
+        <Route path="myPage" element={<MyPage />} />
+
+        <Route path="letter">
+          <Route path="box" element={<LetterBox />} />
+          <Route path="write" element={<LetterForm />} />
+        </Route>
       </Route>
     </Switch>
   );
