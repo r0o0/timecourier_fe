@@ -1,12 +1,11 @@
 import axios from 'axios';
 
+import instance from '@/api/instance';
 import env from '@/config';
 import { setCookie } from '@/utils/cookies';
 
 const expires = new Date();
 expires.setMonth(expires.getMonth() + 1);
-
-const instance = axios.create({ baseURL: env.apiURL });
 
 const serviceToken = async (response: string) => {
   try {
