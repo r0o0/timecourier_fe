@@ -23,8 +23,6 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier", "unused-imports", "simple-import-sort"],
   "rules": {
-    "prettier/prettier": ["error"],
-
     // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
     "react/jsx-props-no-spreading": "off",
@@ -55,7 +53,7 @@
     ],
 
     // https://eslint.org/docs/latest/rules/object-curly-newline
-    "object-curly-newline": ["error", { "multiline": true }],
+    "object-curly-newline": ["error", { "multiline": true, "consistent": true }],
 
     // https://github.com/lydell/eslint-plugin-simple-import-sort
     "simple-import-sort/imports": "error",
