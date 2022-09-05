@@ -34,14 +34,15 @@ function LetterForm() {
   }, [user.name, user.id]);
 
   const validateLetterForm = useValidateLetterForm(step);
-  const addLetter = useAddLetter();
+  const addLetter = useAddLetter(letterForm);
   const handleNextClick = async () => {
     if (!validateLetterForm()) {
       return;
     }
 
     if (!letterForm.id) {
-      await addLetter();
+      const { data } = await addLetter();
+      setLetterForm({ ...letterForm, id: data[0]?.id });
     }
     setStep((prev) => prev + 1);
   };
