@@ -14,6 +14,11 @@ declare namespace APISchema {
     title?: string;
   }
 
+  interface LetterImagePostReq {
+    letterId: string;
+    file: File;
+  }
+
   interface User {
     id: string;
     username: string;

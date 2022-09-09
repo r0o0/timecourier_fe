@@ -10255,6 +10255,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["moment", "npm:2.29.4"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:d7474fbff71ffdb94b6c248e7215bbc030cd24f64bf47fd1c4986c5e38c67a0e96a83bda3f62761c90d5dd7c8576cee2f1b73d45bd48b9158a3c837ffd2bc4d2#npm:18.2.0"],\
+            ["react-image-file-resizer", "npm:0.4.8"],\
             ["react-router", "virtual:6a76ec3121eb9de82dd4e890cf40b05eedeeb0200342c83534875b34309a39ee505770c9a33083c3008153bf65404d15587393000d7508463cf72575bcb28bb1#npm:6.3.0"],\
             ["react-router-dom", "virtual:6a76ec3121eb9de82dd4e890cf40b05eedeeb0200342c83534875b34309a39ee505770c9a33083c3008153bf65404d15587393000d7508463cf72575bcb28bb1#npm:6.3.0"],\
             ["react-scripts", "virtual:d7474fbff71ffdb94b6c248e7215bbc030cd24f64bf47fd1c4986c5e38c67a0e96a83bda3f62761c90d5dd7c8576cee2f1b73d45bd48b9158a3c837ffd2bc4d2#npm:5.0.1"],\
@@ -26688,6 +26689,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/react-error-overlay-npm-6.0.11-021cdeaa92-ce7b44c38f.zip/node_modules/react-error-overlay/",\
           "packageDependencies": [\
             ["react-error-overlay", "npm:6.0.11"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["react-image-file-resizer", [\
+        ["npm:0.4.8", {\
+          "packageLocation": "./.yarn/cache/react-image-file-resizer-npm-0.4.8-6676df75d7-b8f169bc81.zip/node_modules/react-image-file-resizer/",\
+          "packageDependencies": [\
+            ["react-image-file-resizer", "npm:0.4.8"]\
           ],\
           "linkType": "HARD"\
         }]\

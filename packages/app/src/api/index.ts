@@ -9,7 +9,9 @@ export const letterAPI = {
   addLetter: (letterPostReq: APISchema.Letter) =>
     instance.post<void, { data: APISchema.Letter[] }>('/v1/letter', letterPostReq),
   addImage: (letterPostReq: APISchema.LetterImagePostReq) =>
-    instance.post<void, APISchema.Letter>(`/v1/letter/imageUpload`, letterPostReq, {
+    instance.post<void, { data: APISchema.Letter[] }>(`/v1/letter/imageUpload`, letterPostReq, {
       headers: { 'Content-Type': 'multipart/form-data' },
     }),
+  getImageByImageId: (imageId: string) =>
+    instance.get<void, ArrayBuffer>(`/v1/letter/imageView/${imageId}`),
 };

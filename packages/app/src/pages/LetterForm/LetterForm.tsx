@@ -58,14 +58,14 @@ function LetterForm() {
         <LetterFormContent activeStep={step} />
       </div>
       <div className={letterFormActionsStyle}>
-        {step > 1 && (
-          <Button.Prev className={letterFormActionButtonStyle} onClick={handlePrevClick} />
-        )}
         <Button.Next
           className={letterFormActionButtonStyle}
           style={{ marginLeft: 'auto' }}
           onClick={handleNextClick}
         />
+        {step > 1 && (
+          <Button.Prev className={letterFormActionButtonStyle} onClick={handlePrevClick} />
+        )}
       </div>
     </div>
   );
