@@ -37,11 +37,11 @@ function SideBar(props: SideBarProps) {
       <div className={backdropRecipe({ visible: open })} />
       <div className={sideBarRecipe({ visible: open })}>
         <Button
-          label=""
           tabIndex={tabIndex}
           className={cancelIconStyle}
           onClick={onClose}
           variant="transparent"
+          iconOnly
         >
           <CancelIcon />
         </Button>
@@ -65,7 +65,7 @@ function SideBar(props: SideBarProps) {
             </li>
           ))}
           <li className={logoutStyle}>
-            <Button tabIndex={tabIndex} variant="transparent" label="" onClick={handleOpenDialog}>
+            <Button tabIndex={tabIndex} variant="transparent" onClick={handleOpenDialog}>
               <Text as="span" size={2} color="white">
                 로그아웃
               </Text>

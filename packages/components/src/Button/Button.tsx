@@ -5,10 +5,11 @@ import { gradientOutlineRecipe } from '../styles/gradient.css';
 
 import { ButtonNext, ButtonPrev } from './ButtonPrevNext/ButtonPrevNext';
 import { buttonRecipe, buttonSprinkles, buttonStackOrderStyle, buttonStyle } from './Button.css';
-import { ButtonProps, IconOnlyProps, WithIconProps } from './Button.types';
+import { ButtonProps, IconOnlyProps, WithChildrenProps, WithIconProps } from './Button.types';
 import { getBackground } from './Button.utils';
 
 function Button(props: IconOnlyProps): JSX.Element;
+function Button(props: WithChildrenProps): JSX.Element;
 function Button(props: WithIconProps): JSX.Element;
 function Button(props: ButtonProps) {
   const {
@@ -35,7 +36,10 @@ function Button(props: ButtonProps) {
   );
 
   const iconElement =
-    isValidElement(children) && cloneElement(children, { className: buttonStackOrderStyle });
+    isValidElement(children) &&
+    cloneElement(children, {
+      className: classNames(buttonStackOrderStyle, children.props.className),
+    });
 
   return (
     <button

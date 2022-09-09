@@ -13,7 +13,7 @@ type ButtonAttributes = JSX.IntrinsicElements['button'];
 interface ButtonCommonProps extends Omit<ButtonAttributes, 'children'> {
   size?: ButtonSize;
   label: string;
-  children?: ReactElement;
+  children?: ReactElement | string;
 }
 
 export type OutlineVariantProps = ButtonCommonProps & {
@@ -38,6 +38,10 @@ export type IconOnlyProps = Omit<ButtonVariantProps, 'label'> & {
   iconOnly: true;
   children: ReactElement;
   label?: undefined;
+};
+export type WithChildrenProps = Omit<ButtonVariantProps, 'label'> & {
+  label?: string;
+  children: ReactElement | string;
 };
 export type WithIconProps = ButtonVariantProps & {
   iconOnly?: undefined;
