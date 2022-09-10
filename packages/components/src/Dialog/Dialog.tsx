@@ -11,7 +11,14 @@ import { backdropRecipe, dialogRecipe, dialogStyle } from './Dialog.css';
 import { DialogCreateProps, DialogProps } from './Dialog.types';
 
 function Dialog(props: DialogProps) {
-  const { className, children, type, dialogSize, hasBackdrop = true, ...rest } = props;
+  const {
+    className,
+    children,
+    type,
+    dialogSize = { width: 320 },
+    hasBackdrop = true,
+    ...rest
+  } = props;
 
   const handleClosed = (node: HTMLElement) => {
     const containerNode = node.parentNode?.parentNode;

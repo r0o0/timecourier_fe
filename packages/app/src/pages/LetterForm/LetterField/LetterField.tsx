@@ -53,15 +53,20 @@ function LetterField() {
   }, [imageArrayBuffer]);
 
   const resizeImage = useImageResizer();
+  const [imageDataURL, setImageDataURL] = useImageDataURLState(imageReaderRef.current);
+  const handleImageReset = () => {
+    setImageDataURL(undefined);
+    setLetterImage({});
+  };
   const addLetterImage = useMutation(
     (letterImagePostReq: APISchema.LetterImagePostReq) => letterAPI.addImage(letterImagePostReq),
     {
       onSuccess: ({ data }) => {
-        console.log({ data });
         setLetterForm({ ...letterForm, imageId: data[0].imageId });
       },
       onError: () => {
         NotificationToaster.show('이미지 업로드에 실패했습니다.');
+        handleImageReset();
       },
     },
   );
@@ -70,24 +75,24 @@ function LetterField() {
       return;
     }
 
+    setLetterImage({ isLoading: true });
     const resizedImageFile = await resizeImage(event.target.files[0]);
     imageReaderRef.current.readAsDataURL(resizedImageFile);
-
     addLetterImage.mutate({ letterId: letterForm.id ?? '', file: resizedImageFile });
   };
 
-  const [imageDataURL, setImageDataURL] = useImageDataURLState(imageReaderRef.current);
+  useEffect(() => {
+    setLetterImage({
+      ...letterImage,
+      isLoading: (addLetterImage.isLoading || addLetterImage.isError) && !!imageDataURL,
+    });
+  }, [addLetterImage.isLoading, addLetterImage.isError, imageDataURL]);
   useEffect(() => {
     if (!imageDataURL) {
       return;
     }
-    setLetterImage(imageDataURL);
+    setLetterImage({ ...letterImage, image: imageDataURL });
   }, [imageDataURL]);
-
-  const handleImageReset = () => {
-    setImageDataURL(undefined);
-    setLetterImage(undefined);
-  };
 
   return (
     <>
@@ -115,7 +120,7 @@ function LetterField() {
       />
 
       <div className={letterPreviewStyle}>
-        {!imageDataURL && !letterImage && (
+        {!imageDataURL && !letterImage.image && (
           <label htmlFor="letter-image-file" aria-label="사진 업로드">
             <CameraIcon />
             <input
@@ -127,11 +132,11 @@ function LetterField() {
             />
           </label>
         )}
-        {(imageDataURL || letterImage) && (
+        {(imageDataURL || letterImage.image) && (
           <Button iconOnly variant="transparent" onClick={handleImageReset}>
             <img
               className={letterPreviewImageStyle}
-              src={imageDataURL ?? letterImage}
+              src={imageDataURL ?? letterImage.image}
               alt="사용자 지 정 이미지"
             />
           </Button>

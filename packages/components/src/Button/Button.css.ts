@@ -44,8 +44,15 @@ export const buttonStyle = style({
   alignItems: 'center',
   justifyContent: 'center',
   fontWeight: 600,
-  cursor: 'pointer',
+  fontSize: vars.fonts.body.size[3],
   color: vars.colors.white,
+  cursor: 'pointer',
+});
+
+export const buttonChildrenStyle = style({
+  display: 'inline-flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 });
 
 export const buttonStackOrderVar = createVar();
@@ -92,10 +99,8 @@ export const buttonRecipe = recipe({
         '::after': {
           content: '',
           position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
+          width: 'inherit',
+          height: 'inherit',
           background: vars.colors.gradientDark,
           transition: `opacity ${vars.transitions.duration.fast} ${vars.transitions.timing.easeOut}`,
           borderRadius: 'inherit',
@@ -105,6 +110,14 @@ export const buttonRecipe = recipe({
         selectors: { '&:hover:after': { opacity: 1 } },
       },
       transparent: { background: 'transparent' },
+    },
+    disabled: {
+      true: {
+        cursor: 'not-allowed',
+      },
+      false: {
+        cursor: 'pointer',
+      },
     },
   },
 });
