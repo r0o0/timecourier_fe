@@ -2,10 +2,10 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import persistStore from '~/store/persistStore';
 import { ReactComponent as CancelIcon } from '~components/assets/icons/cancel.svg';
-import Dialog from '~components/Dialog/Dialog';
-import { useDialog } from '~components/Dialog/Dialog.hooks';
 import { Button, Text } from '~components/index';
 import { removeCookie } from '~utils/cookies';
+
+import LogoutConfirm from '../LogoutConfirm/LogoutConfirm';
 
 import { sideBarMenuList } from './SideBar.const';
 import {
@@ -20,7 +20,6 @@ import { SideBarProps } from './Sidebar.type';
 
 function SideBar(props: SideBarProps) {
   const { open, onClose } = props;
-  const { isOpen, handleOpenDialog, handleCloseDialog } = useDialog();
 
   const navigate = useNavigate();
 
@@ -30,6 +29,8 @@ function SideBar(props: SideBarProps) {
     navigate('/login', { replace: true });
   };
 
+  const handleOpenDialog = () => LogoutConfirm.show({ onConfirm: handleLogOut });
+
   const tabIndex = open ? 0 : -1;
 
   return (
@@ -37,11 +38,11 @@ function SideBar(props: SideBarProps) {
       <div className={backdropRecipe({ visible: open })} />
       <div className={sideBarRecipe({ visible: open })}>
         <Button
-          label=""
           tabIndex={tabIndex}
           className={cancelIconStyle}
           onClick={onClose}
           variant="transparent"
+          iconOnly
         >
           <CancelIcon />
         </Button>
@@ -65,27 +66,13 @@ function SideBar(props: SideBarProps) {
             </li>
           ))}
           <li className={logoutStyle}>
-            <Button tabIndex={tabIndex} variant="transparent" label="" onClick={handleOpenDialog}>
+            <Button tabIndex={tabIndex} variant="transparent" onClick={handleOpenDialog}>
               <Text as="span" size={2} color="white">
                 로그아웃
               </Text>
             </Button>
           </li>
         </ul>
-        <Dialog isOpen={isOpen} style={{ width: 350 }}>
-          <Dialog.Content>
-            <Text as="p">로그아웃 하시겠습니까?</Text>
-          </Dialog.Content>
-          <Dialog.Actions>
-            <Button
-              label="취소"
-              variant="outline"
-              borderColor="gradient"
-              onClick={handleCloseDialog}
-            />
-            <Button label="확인" background="gradient" onClick={handleLogOut} />
-          </Dialog.Actions>
-        </Dialog>
       </div>
     </div>
   );
