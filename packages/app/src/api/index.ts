@@ -7,7 +7,7 @@ export const authAPI = {
 
 export const letterAPI = {
   addLetter: (letterPostReq: APISchema.Letter) =>
-    instance.post<void, { data: APISchema.Letter[] }>('/v1/letter', letterPostReq),
+    instance.post<void, APISchema.Letter[]>('/v1/letter', letterPostReq),
   updateLetter: (letterPutReq: APISchema.LetterPutReq) => instance.put('/v1/letter', letterPutReq),
   addImage: (letterPostReq: APISchema.LetterImagePostReq) =>
     instance.post<void, { data: APISchema.Letter[] }>(`/v1/letter/imageUpload`, letterPostReq, {
