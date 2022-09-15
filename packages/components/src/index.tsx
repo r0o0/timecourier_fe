@@ -6,6 +6,7 @@ export { default as DatePicker } from './DatePicker/DatePicker';
 export { default as Dialog } from './Dialog/Dialog';
 export { default as Heading } from './Heading/Heading';
 export { default as InputField } from './InputField/InputField';
+export { default as LetterContent } from './LetterContent/LetterContent';
 export { default as LetterTemplate } from './LetterTemplate/LetterTemplate';
 export { default as MailBox } from './MailBox/MailBox';
 export { default as NotificationToaster } from './NotificationToaster/NotificationToaster';

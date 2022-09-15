@@ -16,3 +16,10 @@ export const letterAPI = {
   getImageByImageId: (imageId: string) =>
     instance.get<void, ArrayBuffer>(`/v1/letter/imageView/${imageId}`),
 };
+
+export const reminderAPI = {
+  reminderLetter: (uuid: string) =>
+    instance.get<void, APISchema.ReminderType>(`/v1/letter/receive/${uuid}`),
+  reminderUpdate: (data?: APISchema.ReminderUpDateType) =>
+    instance.put<void, APISchema.ReminderType>('/v1/letter/updateReceiver', data),
+};

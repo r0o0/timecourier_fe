@@ -41,4 +41,11 @@ declare namespace APISchema {
     password?: string;
     phoneNumber?: string;
   }
+
+  interface ReminderType { data: Letter[]; }
+ 
+  interface ReminderUpDateType {
+    id?: string;
+    receivedPhoneNumber?: string;
+  }
 }
