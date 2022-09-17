@@ -8,6 +8,8 @@ export { default as Heading } from './Heading/Heading';
 export { default as InputField } from './InputField/InputField';
 export { default as LetterCard } from './LetterCard/LetterCard';
 export { default as LetterContent } from './LetterContent/LetterContent';
+export { default as LetterDate } from './LetterDate/LetterDate';
+export { default as LetterImage } from './LetterImage/LetterImage';
 export { default as LetterTemplate } from './LetterTemplate/LetterTemplate';
 export { default as NotificationToaster } from './NotificationToaster/NotificationToaster';
 export { default as NumberInput } from './NumberInput/NumberInput';

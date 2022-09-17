@@ -1,4 +1,6 @@
-export interface MailBoxProps {
+type LetterCardAttributes = JSX.IntrinsicElements['div'];
+
+export interface LetterCardProps extends LetterCardAttributes {
   id: string;
   senderName: string;
   letterStatus: 'DONE' | 'DRAFT';

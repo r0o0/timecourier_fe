@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 import moment from 'moment';
 
-import { ReactComponent as OpenIcon } from '../../assets/images/open.svg';
-import { ReactComponent as SendIcon } from '../../assets/images/send.svg';
-import { ReactComponent as WriteIcon } from '../../assets/images/write.svg';
-import { layoutSprinkles } from '../../styles/layout.css';
-import Text from '../../Text/Text';
+import { ReactComponent as OpenIcon } from '../assets/images/open.svg';
+import { ReactComponent as SendIcon } from '../assets/images/send.svg';
+import { ReactComponent as WriteIcon } from '../assets/images/write.svg';
+import { layoutSprinkles } from '../styles/layout.css';
+import Text from '../Text/Text';
 
 import { letterDateStyle } from './LetterDate.css';
 import { LetterDateProps } from './LetterDate.types';

@@ -56,6 +56,7 @@ function LetterBoxContent(props: LetterBoxContentProps) {
   }, [inView]);
 
   const letters = useMemo(() => lettersByPage?.pages.flat(), [lettersByPage]);
+  console.log(letters);
 
   if (!letters || !draftLetters || !doneLetters) {
     return (
@@ -72,9 +73,9 @@ function LetterBoxContent(props: LetterBoxContentProps) {
     <div className={layoutSprinkles({ display: 'flex', flex: 'column' })} style={{ gap: 12 }}>
       {/* TODO 페이지네이션 api 동작 잘 되면 letters 하나로 가기 */}
       {letterStatus === LetterStatus.DRAFT &&
-        (letters ?? draftLetters)?.map((letter) => <LetterBoxCard key={letter.id} {...letter} />)}
+        (draftLetters ?? letters)?.map((letter) => <LetterBoxCard key={letter.id} {...letter} />)}
       {letterStatus === LetterStatus.DONE &&
-        (letters ?? doneLetters)?.map((letter) => <LetterBoxCard key={letter.id} {...letter} />)}
+        (doneLetters ?? letters)?.map((letter) => <LetterBoxCard key={letter.id} {...letter} />)}
       <div ref={observerRef} className={observerStyle} aria-hidden />
     </div>
   );

@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 
 import icon from '../assets/images/lettersend.svg';
+import LetterDate from '../LetterDate/LetterDate';
 import { gradientOutlineRecipe } from '../styles/gradient.css';
 import { layoutSprinkles } from '../styles/layout.css';
 import Text from '../Text/Text';
 
-import LetterDate from './LetterDate/LetterDate';
 import {
   letterCardStyle,
   letterContentStyle,
@@ -13,17 +13,20 @@ import {
   letterImageStyle,
   letterImageWrapperStyle,
 } from './LetterCard.css';
-import { MailBoxProps } from './LetterCard.types';
+import { LetterCardProps } from './LetterCard.types';
 
-function LetterCard(props: MailBoxProps) {
-  const { id, receiverName, content, image, receivedDate, createdAt, letterStatus } = props;
+function LetterCard(props: LetterCardProps) {
+  const { id, receiverName, content, image, receivedDate, createdAt, letterStatus, ...rest } =
+    props;
 
   return (
     <div
+      {...rest}
       className={classNames(
         letterCardStyle,
         layoutSprinkles({ display: 'flex', flex: 'column' }),
         gradientOutlineRecipe({ background: 'white' }),
+        rest.className,
       )}
       id={id}
     >
