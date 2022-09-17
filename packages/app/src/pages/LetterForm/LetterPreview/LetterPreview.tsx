@@ -12,7 +12,7 @@ import { letterFormState, letterFormStepState, letterImageState } from '../Lette
 
 function LetterPreview() {
   const letterForm = useRecoilValue(letterFormState);
-  const letterImage = useRecoilValue(letterImageState)
+  const letterImage = useRecoilValue(letterImageState);
   const { userID, id, receivedDate, senderName, receiverName, content, imageId } = letterForm;
 
   // TODO: 카카오 타입 any 설정 필요
@@ -20,7 +20,7 @@ function LetterPreview() {
   const kakao = (window as any).Kakao;
 
   const setStep = useSetRecoilState(letterFormStepState);
-  
+
   const kakaoShare = () => {
     if (!kakao.isInitialized()) {
       kakao.init(env.kakaoShareKey);
@@ -57,8 +57,17 @@ function LetterPreview() {
     if (!userID || !id || !receivedDate || !senderName || !receiverName || !content) {
       return;
     }
-    await updateLetter({ userID, id, receivedDate, senderName, receiverName, content, imageId, letterStatus: 'DONE' });
-    kakaoShare()
+    await updateLetter({
+      userID,
+      id,
+      receivedDate,
+      senderName,
+      receiverName,
+      content,
+      imageId,
+      letterStatus: 'DONE',
+    });
+    kakaoShare();
   };
 
   const handleSendClick = () => {
