@@ -6,6 +6,9 @@ export const authAPI = {
 };
 
 export const letterAPI = {
+  getLettersByStatus: (params: APISchema.LettersByStatusGetParams) =>
+    instance.get<void, APISchema.LetterByStatusPage>('v1/letter/version2', { params }),
+  getLetters: () => instance.get<void, APISchema.LetterTemplate[]>('v1/letter'), // TODO remove
   addLetter: (letterPostReq: APISchema.Letter) =>
     instance.post<void, APISchema.Letter[]>('/v1/letter', letterPostReq),
   updateLetter: (letterPutReq: APISchema.LetterPutReq) => instance.put('/v1/letter', letterPutReq),

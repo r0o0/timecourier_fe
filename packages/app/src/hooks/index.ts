@@ -1,5 +1,9 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
+import { useQuery } from '@tanstack/react-query';
+
+import { letterAPI } from '~/api';
+
 export const useImageDataURLState = (
   fileReader: FileReader,
 ): [string | undefined, Dispatch<SetStateAction<string | undefined>>] => {
@@ -21,3 +25,8 @@ export const useImageDataURLState = (
 
   return [imageDataURL, setImageDataURL];
 };
+
+export const useGetImageByImageId = (imageId?: string, enabled = false) =>
+  useQuery(['letterImage', imageId], () => letterAPI.getImageByImageId(imageId!), {
+    enabled: !!imageId && enabled,
+  });
