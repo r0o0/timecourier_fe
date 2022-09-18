@@ -76,14 +76,11 @@ declare namespace APISchema {
     gender?: string;
     password?: string;
     phoneNumber?: string;
+    tutorialYN?: boolean;
   }
-
-  interface ReminderType {
-    data: Letter[];
-  }
-
+  
   interface ReminderUpDateType {
-    id?: string;
-    receivedPhoneNumber?: string;
+    letterId?: string;
+    isSended?: boolean;
   }
 }
