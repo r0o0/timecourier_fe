@@ -11,7 +11,9 @@ export const letterAPI = {
   getLetters: () => instance.get<void, APISchema.LetterTemplate[]>('v1/letter'), // TODO remove
   addLetter: (letterPostReq: APISchema.Letter) =>
     instance.post<void, APISchema.Letter[]>('/v1/letter', letterPostReq),
-  updateLetter: (letterPutReq: APISchema.LetterPutReq) => instance.put('/v1/letter', letterPutReq),
+  updateLetter: (data: APISchema.Letter) => instance.put('/v1/letter', data),
+  saveLetter: (letterPutReq: APISchema.LetterPutReq) => instance.put('/v1/letter', letterPutReq),
+  deleteDraftLetter: (letter: APISchema.Letter) => instance.delete('/v1/letter', { data: letter }),
   addImage: (letterPostReq: APISchema.LetterImagePostReq) =>
     instance.post<void, APISchema.Letter[]>(`/v1/letter/imageUpload`, letterPostReq, {
       headers: { 'Content-Type': 'multipart/form-data' },

@@ -1,11 +1,13 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { useRecoilState } from 'recoil';
 
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { letterAPI } from '~/api';
 import { LetterStatus } from '~/const';
 import { letterBoxLabelByType } from '~/pages/LetterBox/LetterBox.const';
+import { letterDraftBoxState } from '~/pages/LetterBox/LetterBoxContent/LetterBoxContent.atoms';
 import { observerStyle } from '~/pages/LetterBox/LetterBoxContent/LetterBoxContent.css';
 import { Text } from '~components/index';
 import { layoutSprinkles } from '~components/styles/layout.css';
@@ -14,18 +16,18 @@ import LetterBoxCard from '../LetterBoxCard/LetterBoxCard';
 
 import { LetterBoxContentProps } from './LetterBoxContent.types';
 
-const size = 10;
+const size = 5;
 
 function LetterBoxContent(props: LetterBoxContentProps) {
   const { letterStatus } = props;
 
   const { data: lettersByPage, fetchNextPage } = useInfiniteQuery(
     ['lettersByStatus', size, letterStatus],
-    ({ pageParam = 1 }) => letterAPI.getLettersByStatus({ size, page: pageParam, letterStatus }),
+    ({ pageParam = 0 }) => letterAPI.getLettersByStatus({ size, page: pageParam, letterStatus }),
     {
       getNextPageParam: (lastPage) => {
-        if (lastPage.number === lastPage.totalPages) {
-          return false;
+        if (lastPage.last) {
+          return undefined;
         }
         return lastPage.number + 1;
       },
@@ -36,18 +38,22 @@ function LetterBoxContent(props: LetterBoxContentProps) {
     },
   );
 
-  const { data } = useQuery(['temporaryLetters', letterStatus], () => letterAPI.getLetters());
+  const letters = useMemo(() => lettersByPage?.pages.flat(), [lettersByPage]);
 
-  const draftLetters = useMemo(
-    () => data?.filter((letter) => letter.letterStatus === LetterStatus.DRAFT),
-    [data],
-  );
-  const doneLetters = useMemo(
-    () => data?.filter((letter) => letter.letterStatus === LetterStatus.DONE),
-    [data],
-  );
+  const [letterDraftBox, setLetterDraftBox] = useRecoilState(letterDraftBoxState);
 
-  const { ref: observerRef, inView } = useInView({ delay: 200 });
+  const draftLetterMap = useRef<Map<string, APISchema.LetterTemplate>>(new Map());
+  useEffect(() => {
+    if (!letters || letterStatus === LetterStatus.DONE) {
+      return;
+    }
+    letters.forEach((item) => {
+      draftLetterMap.current.set(item.id, item);
+    });
+    setLetterDraftBox(letters);
+  }, [letters]);
+
+  const { ref: observerRef, inView } = useInView();
 
   useEffect(() => {
     if (inView) {
@@ -55,10 +61,7 @@ function LetterBoxContent(props: LetterBoxContentProps) {
     }
   }, [inView]);
 
-  const letters = useMemo(() => lettersByPage?.pages.flat(), [lettersByPage]);
-  console.log(letters);
-
-  if (!letters || !draftLetters || !doneLetters) {
+  if (!letters) {
     return (
       <div
         className={layoutSprinkles({ display: 'flex', justify: 'center', items: 'center' })}
@@ -71,11 +74,14 @@ function LetterBoxContent(props: LetterBoxContentProps) {
 
   return (
     <div className={layoutSprinkles({ display: 'flex', flex: 'column' })} style={{ gap: 12 }}>
-      {/* TODO 페이지네이션 api 동작 잘 되면 letters 하나로 가기 */}
       {letterStatus === LetterStatus.DRAFT &&
-        (draftLetters ?? letters)?.map((letter) => <LetterBoxCard key={letter.id} {...letter} />)}
+        letterDraftBox?.map((letter) => (
+          <LetterBoxCard key={letter.id} letter={letter} draftLetterMap={draftLetterMap} />
+        ))}
       {letterStatus === LetterStatus.DONE &&
-        (doneLetters ?? letters)?.map((letter) => <LetterBoxCard key={letter.id} {...letter} />)}
+        letters?.map((letter) => (
+          <LetterBoxCard key={letter.id} letter={letter} draftLetterMap={draftLetterMap} />
+        ))}
       <div ref={observerRef} className={observerStyle} aria-hidden />
     </div>
   );

@@ -22,13 +22,13 @@ function LetterCard(props: LetterCardProps) {
   return (
     <div
       {...rest}
+      id={id}
       className={classNames(
         letterCardStyle,
         layoutSprinkles({ display: 'flex', flex: 'column' }),
         gradientOutlineRecipe({ background: 'white' }),
         rest.className,
       )}
-      id={id}
     >
       <div className={layoutSprinkles({ display: 'flex' })} style={{ gap: 12 }}>
         <div className={letterImageWrapperStyle}>

@@ -1,12 +1,25 @@
 import { useEffect, useRef, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 
+import { useMutation } from '@tanstack/react-query';
+
+import { letterAPI } from '~/api';
+import { LetterStatus } from '~/const';
 import { useGetImageByImageId, useImageDataURLState } from '~/hooks';
-import { LetterBoxCardProps } from '~/pages/LetterBox/LetterBoxCard/LetterBoxCard.types';
+import {
+  letterBoxCardTrashIconStyle,
+  letterBoxCardWrapperStyle,
+} from '~/pages/LetterBox/LetterBoxCard/LetterBoxCard.css';
+import { letterDraftBoxState } from '~/pages/LetterBox/LetterBoxContent/LetterBoxContent.atoms';
 import LetterPopover from '~/pages/LetterPopover/LetterPopover';
-import { LetterCard } from '~components/index';
+import { ReactComponent as TrashIcon } from '~components/assets/icons/trash.svg';
+import { Button, LetterCard, NotificationToaster } from '~components/index';
+
+import { LetterBoxCardProps } from './LetterBoxCard.types';
 
 function LetterBoxCard(props: LetterBoxCardProps) {
-  const { id, senderName, receiverName, content, imageId, letterStatus, createdAt } = props;
+  const { letter, draftLetterMap } = props;
+  const { letterStatus, imageId } = letter;
 
   const { data: imageArrayBuffer } = useGetImageByImageId(imageId);
 
@@ -28,20 +41,43 @@ function LetterBoxCard(props: LetterBoxCardProps) {
     setShow(true);
   };
 
+  const setLetterDraftBox = useSetRecoilState(letterDraftBoxState);
+  const deleteLetter = useMutation(() => letterAPI.deleteDraftLetter(letter), {
+    onSuccess: () => {
+      if (!draftLetterMap) {
+        return;
+      }
+      draftLetterMap.current.delete(letter.id);
+      setLetterDraftBox(Array.from(draftLetterMap.current.values()));
+    },
+    onError: () => {
+      NotificationToaster.show('편지 삭제에 실패했습니다.');
+    },
+  });
+  const handleDeleteClick = () => {
+    if (!draftLetterMap) {
+      return;
+    }
+    deleteLetter.mutate();
+  };
+
   return (
     <>
-      <LetterCard
-        key={id}
-        id={id}
-        content={content}
-        senderName={senderName}
-        receiverName={receiverName}
-        letterStatus={letterStatus}
-        createdAt={createdAt}
-        image={image}
-        onClick={handleClick}
-      />
-      {show && <LetterPopover letter={props} onClose={() => setShow(false)} />}
+      <div className={letterBoxCardWrapperStyle}>
+        <LetterCard {...letter} image={image} onClick={handleClick} />
+        {letterStatus === LetterStatus.DRAFT && (
+          <Button
+            className={letterBoxCardTrashIconStyle}
+            variant="transparent"
+            iconOnly
+            onClick={handleDeleteClick}
+            style={{ position: 'absolute' }}
+          >
+            <TrashIcon />
+          </Button>
+        )}
+      </div>
+      {show && <LetterPopover letter={letter} onClose={() => setShow(false)} />}
     </>
   );
 }

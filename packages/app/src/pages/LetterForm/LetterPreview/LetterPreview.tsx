@@ -36,8 +36,8 @@ function LetterPreview() {
     });
   };
 
-  const updateLetter = useMutation(
-    (letterPutReq: APISchema.LetterPutReq) => letterAPI.updateLetter(letterPutReq),
+  const saveLetter = useMutation(
+    (letterPutReq: APISchema.LetterPutReq) => letterAPI.saveLetter(letterPutReq),
     {
       onError: () => {
         NotificationToaster.show('편지 저장에 실패했습니다.');
@@ -57,7 +57,7 @@ function LetterPreview() {
     if (!userID || !id || !receivedDate || !senderName || !receiverName || !content) {
       return;
     }
-    await updateLetter({
+    await saveLetter({
       userID,
       id,
       receivedDate,

@@ -28,7 +28,7 @@ declare namespace APISchema {
         | 'letterStatus'
       >
     > {
-    imageId: Letter['imageId'];
+    imageId?: Letter['imageId'];
   }
 
   interface LetterTemplate extends Pick<Letter, 'receiverName' | 'receivedDate' | 'content'> {
