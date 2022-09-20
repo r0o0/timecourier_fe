@@ -21,6 +21,6 @@ export const inputFieldContentRecipe = recipe({
 
 export const inputFieldErrorStyle = style({
   display: 'inline-flex',
-  alignItems: 'center',
+  alignItems: 'flex-start',
   gap: 4,
 });
