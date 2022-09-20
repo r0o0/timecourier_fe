@@ -11,13 +11,19 @@ import { letterFormState } from '../LetterForm.atoms';
 const errorMessage =
   '설정한 시간이 벌써 과거가 됐어요. 편지 보내기 전에 다시 한번 시간을 선택해 주세요.';
 
+const getCurrentDate = (): number => moment().add(1, 'd').toDate().setSeconds(0);
+const getTime = (date: string | number | undefined): string | undefined => date ? moment(date).format('HH:mm') : undefined;
+const formatToReceivedDate = (date: Date, time: string): string => `${moment(date).format('YYYY-MM-DD')} ${time}:00`;
+const getDiffDay = (newDate: string, currentDate: number): number => Number(moment.duration(moment(newDate).diff(currentDate)).asDays().toFixed(2));
+const isPastOneDay = (newDate: string, currentDate: number): boolean => getDiffDay(newDate, currentDate) < -1;
+
 function ReceiveDateField() {
   const [letterForm, setLetterForm] = useRecoilState(letterFormState);
   const [date, setDate] = useState<Date>(
-    moment(letterForm.receivedDate).toDate() ?? moment().add(1, 'd').toDate(),
+    moment(letterForm.receivedDate).toDate() ?? getCurrentDate(),
   );
   const [time, setTime] = useState<string>(
-    moment(letterForm.receivedDate).format('HH:mm') ?? moment().format('HH:mm'),
+    getTime(letterForm.receivedDate) ?? getTime(getCurrentDate()) ?? '',
   );
   const [error, setError] = useState<string>();
 
@@ -30,20 +36,13 @@ function ReceiveDateField() {
   };
 
   useEffect(() => {
-    setLetterForm({
-      ...letterForm,
-      receivedDate: `${moment(date).format('YYYY-MM-DD')} ${time}:00`,
-    });
-  }, []);
-
-  useEffect(() => {
-    const newDate = `${moment(date).format('YYYY-MM-DD')} ${time}:00`;
+    const newDate = formatToReceivedDate(date, time);
     setLetterForm({
       ...letterForm,
       receivedDate: newDate,
     });
 
-    if (moment(newDate).diff(moment().add(1, 'd')) < 1) {
+    if (isPastOneDay(newDate, getCurrentDate())) {
       setError(errorMessage);
     } else {
       setError(undefined);
