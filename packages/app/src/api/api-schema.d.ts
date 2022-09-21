@@ -31,6 +31,11 @@ declare namespace APISchema {
     imageId?: Letter['imageId'];
   }
 
+  interface SaveDraftLetter {
+    letter: Letter;
+    method: 'POST' | 'PUT';
+  }
+
   interface LetterTemplate extends Pick<Letter, 'receiverName' | 'receivedDate' | 'content'> {
     userID: NonNullable<Letter['userID']>;
     id: NonNullable<Letter['id']>;
@@ -78,7 +83,7 @@ declare namespace APISchema {
     phoneNumber?: string;
     tutorialYN?: boolean;
   }
-  
+
   interface ReminderUpDateType {
     letterId?: string;
     isSended?: boolean;

@@ -1,9 +1,11 @@
 import axios from 'axios';
 
 import env from '~/config';
-import {getCookie} from "~utils/cookies";
+import { getCookie } from '~utils/cookies';
 
-const instance = axios.create({ baseURL: env.apiURL, headers: { Authorization: `Bearer ${getCookie('token')}`} });
+export const Authorization = `Bearer ${getCookie('token')}`;
+
+const instance = axios.create({ baseURL: env.apiURL, headers: { Authorization } });
 
 instance.interceptors.response.use((response) => response.data);
 
