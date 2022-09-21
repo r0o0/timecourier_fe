@@ -1,6 +1,6 @@
 import env from '~/config';
 
-import instance, { Authorization } from './instance';
+import instance, { getAuth } from './instance';
 
 export const authAPI = {
   authenticate: (token: string) =>
@@ -21,7 +21,7 @@ export const letterAPI = {
       method,
       headers: {
         'Content-Type': 'application/json',
-        Authorization,
+        Authorization: getAuth(),
       },
       body: JSON.stringify(data),
       keepalive: true,
