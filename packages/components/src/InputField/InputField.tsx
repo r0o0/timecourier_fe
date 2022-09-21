@@ -20,7 +20,7 @@ function InputField(props: PropsWithChildren<InputFieldProps>) {
         })}
       {errorMessage && (
         <Text className={inputFieldErrorStyle} as="span" color="error" size={1}>
-          <CautionIcon /> {errorMessage}
+          <CautionIcon style={{ flex: '0 0 auto' }} /> {errorMessage}
         </Text>
       )}
     </div>
