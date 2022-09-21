@@ -49,3 +49,29 @@ export const useBeforeunload = (handler: (event: BeforeUnloadEvent) => void) => 
     };
   }, []);
 };
+
+export function usePageVisibilityChange(handler: () => void | Promise<void>) {
+  const terminateEventRef = useRef<boolean>(false);
+
+  useEffect(() => {
+    const handlePageHide = (event: Event) => {
+      if (terminateEventRef.current) return;
+
+      if (event.type === 'pagehide') {
+        handler();
+        terminateEventRef.current = true;
+      }
+
+      if (event.type === 'visibilitychange' && document.visibilityState === 'hidden') {
+        handler();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handlePageHide);
+    window.addEventListener('pagehide', handlePageHide);
+    return () => {
+      document.removeEventListener('visibilitychange', handlePageHide);
+      window.removeEventListener('pagehide', handlePageHide);
+    };
+  }, [handler]);
+}

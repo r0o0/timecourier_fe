@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
-import { useBeforeunload } from '~/hooks';
+import { LetterStatus } from '~/const';
+import { usePageVisibilityChange } from '~/hooks';
 import { userState } from '~/store/user.atoms';
 import { Button, ProgressBar } from '~components/index';
 
@@ -13,14 +14,14 @@ import {
   letterFormContentStyle,
   letterFormStyle,
 } from './LetterForm.css';
-import { useAddLetter, useUpdateLetter, useValidateLetterForm } from './LetterForm.hooks';
+import { useAddLetter, useSaveDraftLetter, useValidateLetterForm } from './LetterForm.hooks';
 
 const totalSteps = 5;
 
 function LetterForm() {
   const user = useRecoilValue(userState);
   const [letterForm, setLetterForm] = useRecoilState(letterFormState);
-  const letterImage = useRecoilValue(letterImageState);
+  const [letterImage, setLetterImage] = useRecoilState(letterImageState);
 
   const [step, setStep] = useRecoilState(letterFormStepState);
 
@@ -29,10 +30,12 @@ function LetterForm() {
       return;
     }
     setLetterForm({
-      ...letterForm,
+      letterStatus: LetterStatus.DRAFT,
       userID: user.id,
       senderName: user.name,
     });
+    setStep(1);
+    setLetterImage({});
   }, [user.name, user.id]);
 
   const validateLetterForm = useValidateLetterForm(step);
@@ -53,14 +56,11 @@ function LetterForm() {
     setStep((prev) => prev - 1);
   };
 
-  const updateLetter = useUpdateLetter();
-  useBeforeunload(async (event) => {
-    if (!letterForm.id || step > 1) {
-      event.preventDefault();
-      await updateLetter(letterForm);
-      return false;
+  const saveDraftLetter = useSaveDraftLetter();
+  usePageVisibilityChange(() => {
+    if (step > 1 && letterForm.letterStatus !== LetterStatus.DONE) {
+      saveDraftLetter({ letter: letterForm, method: letterForm.id ? 'PUT' : 'POST' });
     }
-    return true;
   });
 
   return (

@@ -1,4 +1,6 @@
-import instance from './instance';
+import env from '~/config';
+
+import instance, { Authorization } from './instance';
 
 export const authAPI = {
   authenticate: (token: string) =>
@@ -11,7 +13,19 @@ export const letterAPI = {
   getLetters: () => instance.get<void, APISchema.LetterTemplate[]>('v1/letter'), // TODO remove
   addLetter: (letterPostReq: APISchema.Letter) =>
     instance.post<void, APISchema.Letter[]>('/v1/letter', letterPostReq),
-  updateLetter: (data: APISchema.Letter) => instance.put('/v1/letter', data),
+  saveDraftLetter: (
+    data: APISchema.SaveDraftLetter['letter'],
+    method: APISchema.SaveDraftLetter['method'],
+  ) =>
+    fetch(`${env.apiURL}/v1/letter`, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization,
+      },
+      body: JSON.stringify(data),
+      keepalive: true,
+    }),
   saveLetter: (letterPutReq: APISchema.LetterPutReq) => instance.put('/v1/letter', letterPutReq),
   deleteDraftLetter: (letter: APISchema.Letter) => instance.delete('/v1/letter', { data: letter }),
   addImage: (letterPostReq: APISchema.LetterImagePostReq) =>
