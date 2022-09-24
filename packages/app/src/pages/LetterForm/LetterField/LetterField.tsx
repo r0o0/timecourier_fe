@@ -97,7 +97,7 @@ function LetterField() {
       </Text>
 
       <div className={letterTextareaHeaderStyle}>
-        <Text as="span" color="secondary" asHeadingFont size={4}>
+        <Text as="span" color="secondary" size={4} fontWeight="bold">
           TO: {letterForm.receiverName}
         </Text>
         <Text as="span" color="gray500" size={2}>

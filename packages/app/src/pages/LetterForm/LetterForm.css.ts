@@ -21,6 +21,8 @@ export const letterFormContentStyle = style({
 });
 
 export const letterFormActionsStyle = style({
+  position: 'sticky',
+  bottom: 0,
   display: 'flex',
   flexDirection: 'row-reverse',
   padding: `0 ${letterFormPaddingX}`,

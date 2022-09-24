@@ -13,4 +13,5 @@ export type TextProps<Tag extends ElementType> = ComponentPropsWithoutRef<Tag> &
   color?: FontSprinkles['color'];
   size?: TextSizeSprinkles['fontSize'];
   headingSize?: HeadingSizeSprinkles['headingSize'];
+  fontWeight?: FontSprinkles['fontWeight'];
 };

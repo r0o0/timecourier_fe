@@ -13,7 +13,6 @@ function Calendar(props: CalendarProps) {
   const { isOpen, onClose } = useDialog();
 
   const handleChange = (selectedDate: Date, isUserChange: boolean) => {
-    onClose();
     onChange?.(selectedDate, isUserChange);
   };
 
@@ -25,7 +24,7 @@ function Calendar(props: CalendarProps) {
           defaultValue={defaultValue}
           value={value}
           onChange={handleChange}
-          minDate={moment().toDate()}
+          minDate={moment().add(1, 'd').toDate()}
           maxDate={moment().add(1, 'y').toDate()}
           highlightCurrentDay={showToday}
         />

@@ -10,13 +10,14 @@ export const useValidateNameField = () => {
     const { name } = nameField;
     let errorMessage = '';
 
-    if (name && name.length < 10) {
+    const trimmed = name?.trim();
+    if (trimmed.length <= 10 && trimmed.length >= 1) {
       return true;
     }
-    if (!name?.trim()) {
+    if (trimmed.length === 0) {
       errorMessage = '이름을 입력해주세요';
     }
-    if ((name || '').length > 10) {
+    if (trimmed.length > 10) {
       errorMessage = '이름은 10글자 이내로 적어주세요.';
     }
 

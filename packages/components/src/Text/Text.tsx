@@ -11,6 +11,7 @@ function Text<Tag extends ElementType>(props: TextProps<Tag>) {
     as = 'div',
     color = 'black',
     size = 3,
+    fontWeight,
     headingSize,
     asHeadingFont = false,
     children,
@@ -25,7 +26,7 @@ function Text<Tag extends ElementType>(props: TextProps<Tag>) {
       className: classNames(
         headingSizeSprinkles({ headingSize, headingLineHeight: headingSize }),
         textSizeSprinkles({ size, lineHeight: size }),
-        fontSprinkles({ color, fontFamily: asHeadingFont ? 'display' : undefined }),
+        fontSprinkles({ color, fontFamily: asHeadingFont ? 'display' : undefined, fontWeight }),
         className,
       ),
     },

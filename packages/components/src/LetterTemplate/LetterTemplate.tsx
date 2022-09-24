@@ -16,15 +16,15 @@ function LetterTemplate(props: LetterTemplateProps) {
         className={classNames(letterContentStyle, letterContentRecipe({ border, theme }))}
         style={contentStyle}
       >
-        <Text color={theme === 'dark' ? 'secondary' : 'primary'} asHeadingFont>
-          TO: {senderName}
+        <Text color={theme === 'dark' ? 'secondary' : 'primary'} fontWeight="bold">
+          TO: {receiverName}
         </Text>
         <Text
           color={theme === 'dark' ? 'secondary' : 'primary'}
           style={{ order: 1, alignSelf: 'flex-end' }}
-          asHeadingFont
+          fontWeight="bold"
         >
-          FROM. {receiverName}
+          FROM. {senderName}
         </Text>
         <Text
           as="p"
