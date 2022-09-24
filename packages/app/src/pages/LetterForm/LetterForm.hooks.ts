@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import moment from 'moment';
 import { useRecoilValue } from 'recoil';
 
 import { useMutation } from '@tanstack/react-query';
@@ -52,3 +53,6 @@ export const useSaveDraftLetter = () =>
       },
     },
   ).mutate;
+
+export const useIsPastDate = () =>
+  useCallback((newDate: string): boolean => moment(newDate).isBefore(), []);

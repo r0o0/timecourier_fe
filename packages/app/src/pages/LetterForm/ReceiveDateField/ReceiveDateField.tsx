@@ -2,25 +2,32 @@ import { useEffect, useState } from 'react';
 import moment from 'moment';
 import { useRecoilState } from 'recoil';
 
+import { useIsPastDate } from '~/pages/LetterForm/LetterForm.hooks';
 import { DatePicker, Text, TimePicker } from '~components/index';
 import { layoutSprinkles } from '~components/styles/layout.css';
 import Tooltip from '~components/Tooltip/Tooltip';
 
 import { letterFormState } from '../LetterForm.atoms';
 
-const errorMessage =
-  '설정한 시간이 벌써 과거가 됐어요. 편지 보내기 전에 다시 한번 시간을 선택해 주세요.';
+const errorMessage = {
+  pastTime: '설정한 시간이 벌써 과거가 됐어요. 편지 보내기 전에 다시 한번 시간을 선택해 주세요.',
+  invalidTime: '편지 시간은 최소 하루, 최대 1년 뒤인 미래 시간으로 설정해 주세요.',
+};
 
-const getCurrentDate = (): number => moment().add(1, 'd').toDate().setSeconds(0);
-const getTime = (date: string | number | undefined): string | undefined => date ? moment(date).format('HH:mm') : undefined;
-const formatToReceivedDate = (date: Date, time: string): string => `${moment(date).format('YYYY-MM-DD')} ${time}:00`;
-const getDiffDay = (newDate: string, currentDate: number): number => Number(moment.duration(moment(newDate).diff(currentDate)).asDays().toFixed(2));
-const isPastOneDay = (newDate: string, currentDate: number): boolean => getDiffDay(newDate, currentDate) < -1;
+const getCurrentDate = (): Date => moment().add(1, 'd').seconds(0).toDate();
+const getTime = (date: string | number | Date | undefined): string | undefined =>
+  date ? moment(date).format('HH:mm') : undefined;
+const formatToReceivedDate = (date: Date, time: string): string =>
+  `${moment(date).format('YYYY-MM-DD')} ${time}:00`;
+const isValidTime = (newDate: string): boolean => {
+  const maxDate = moment(getCurrentDate()).add(1, 'y').subtract(1, 'd');
+  return moment(newDate).isBetween(moment(getCurrentDate()).subtract(1, 'minutes'), maxDate);
+};
 
 function ReceiveDateField() {
   const [letterForm, setLetterForm] = useRecoilState(letterFormState);
   const [date, setDate] = useState<Date>(
-    moment(letterForm.receivedDate).toDate() ?? getCurrentDate(),
+    letterForm.receivedDate ? moment(letterForm.receivedDate).toDate() : getCurrentDate(),
   );
   const [time, setTime] = useState<string>(
     getTime(letterForm.receivedDate) ?? getTime(getCurrentDate()) ?? '',
@@ -35,6 +42,7 @@ function ReceiveDateField() {
     setTime(value);
   };
 
+  const isPastDate = useIsPastDate();
   useEffect(() => {
     const newDate = formatToReceivedDate(date, time);
     setLetterForm({
@@ -42,8 +50,10 @@ function ReceiveDateField() {
       receivedDate: newDate,
     });
 
-    if (isPastOneDay(newDate, getCurrentDate())) {
-      setError(errorMessage);
+    if (isPastDate(newDate)) {
+      setError(errorMessage.pastTime);
+    } else if (!isValidTime(newDate)) {
+      setError(errorMessage.invalidTime);
     } else {
       setError(undefined);
     }

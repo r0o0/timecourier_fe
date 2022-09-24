@@ -3,7 +3,8 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useMutation } from '@tanstack/react-query';
 
 import { letterAPI } from '~/api';
-import env from '~/config';
+import { useIsPastDate } from '~/pages/LetterForm/LetterForm.hooks';
+import { useShareWithKakao } from '~/pages/LetterForm/LetterPreview/LetterPreview.hooks';
 import LetterSendConfirm from '~/pages/LetterForm/LetterSendConfirm/LetterSendConfirm';
 import { Button, LetterTemplate, NotificationToaster, Text } from '~components/index';
 import { layoutSprinkles } from '~components/styles/layout.css';
@@ -11,30 +12,10 @@ import { layoutSprinkles } from '~components/styles/layout.css';
 import { letterFormState, letterFormStepState, letterImageState } from '../LetterForm.atoms';
 
 function LetterPreview() {
-  const letterForm = useRecoilValue(letterFormState);
   const letterImage = useRecoilValue(letterImageState);
-  const { userID, id, receivedDate, senderName, receiverName, content, imageId } = letterForm;
-
-  // TODO: 카카오 타입 any 설정 필요
-  // eslint-disable-next-line
-  const kakao = (window as any).Kakao;
-
+  const { userID, id, receivedDate, senderName, receiverName, content, imageId } =
+    useRecoilValue(letterFormState);
   const setStep = useSetRecoilState(letterFormStepState);
-
-  const kakaoShare = () => {
-    if (!kakao.isInitialized()) {
-      kakao.init(env.kakaoShareKey);
-    }
-    kakao.Share.sendCustom({
-      templateId: 80393,
-      templateArgs: {
-        name: `\nFrom. ${receiverName}`,
-        day: `${receivedDate}\n`,
-        linkUrl: `reminder/${id}`,
-      },
-      callback: () => setStep(6),
-    });
-  };
 
   const saveLetter = useMutation(
     (letterPutReq: APISchema.LetterPutReq) => letterAPI.saveLetter(letterPutReq),
@@ -53,6 +34,7 @@ function LetterPreview() {
     setStep(4);
   };
 
+  const shareWithKakao = useShareWithKakao();
   const sendLetter = async () => {
     if (!userID || !id || !receivedDate || !senderName || !receiverName || !content) {
       return;
@@ -67,10 +49,15 @@ function LetterPreview() {
       imageId,
       letterStatus: 'DONE',
     });
-    kakaoShare();
+    shareWithKakao({ id, receivedDate, receiverName });
   };
 
+  const isPastDate = useIsPastDate();
   const handleSendClick = () => {
+    if (receivedDate && isPastDate(receivedDate)) {
+      setStep(3);
+      return;
+    }
     LetterSendConfirm.show({ onCancel: handlePrevClick, onConfirm: sendLetter });
   };
 

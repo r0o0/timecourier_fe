@@ -16,7 +16,7 @@ import {
 } from './TimePicker.types';
 
 function TimePickerDialog(props: TimePickerDialogProps) {
-  const { defaultValue, value: valueFromParent, onChange } = props;
+  const { defaultValue, value: valueFromParent, onChange, onBlur } = props;
   const { isOpen, onClose } = useDialog();
 
   const [value, setValue] = useState<Date>();
@@ -34,7 +34,7 @@ function TimePickerDialog(props: TimePickerDialogProps) {
   };
 
   const handleBlur = () => {
-    onClose();
+    onBlur?.(value);
   };
 
   return (
@@ -56,7 +56,7 @@ const TimePickerDialogFn = Object.assign(TimePickerDialog, {
 });
 
 function TimePicker(props: TimePickerProps) {
-  const { value: valueFromParent, onChange, errorMessage } = props;
+  const { value: valueFromParent, onChange, onBlur, errorMessage } = props;
 
   const [value, setValue] = useState<{ date: Date; time: string }>();
 
@@ -72,8 +72,15 @@ function TimePicker(props: TimePickerProps) {
     onChange?.(moment(selectedDate).format('HH:mm'));
   };
 
+  const handleBlur = (time?: Date) => {
+    if (!time) {
+      return;
+    }
+    onBlur?.(moment(time).format('HH:mm'));
+  };
+
   const handleClick = () => {
-    TimePickerDialogFn.show({ value: value?.date, onChange: handleChange });
+    TimePickerDialogFn.show({ value: value?.date, onChange: handleChange, onBlur: handleBlur });
   };
 
   const handleReset = () => {

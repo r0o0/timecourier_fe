@@ -17,6 +17,7 @@ function DatePicker(props: DatePickerProps) {
     if (!valueFromParent) {
       return;
     }
+
     setValue({ date: valueFromParent, formatted: moment(valueFromParent).format('LL') });
   }, [valueFromParent]);
 

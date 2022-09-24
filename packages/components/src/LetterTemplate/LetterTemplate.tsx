@@ -17,14 +17,14 @@ function LetterTemplate(props: LetterTemplateProps) {
         style={contentStyle}
       >
         <Text color={theme === 'dark' ? 'secondary' : 'primary'} asHeadingFont>
-          TO: {senderName}
+          TO: {receiverName}
         </Text>
         <Text
           color={theme === 'dark' ? 'secondary' : 'primary'}
           style={{ order: 1, alignSelf: 'flex-end' }}
           asHeadingFont
         >
-          FROM. {receiverName}
+          FROM. {senderName}
         </Text>
         <Text
           as="p"
