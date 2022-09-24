@@ -1,4 +1,4 @@
-import { StrictMode } from 'react';
+import { StrictMode, Suspense } from 'react';
 import moment from 'moment';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
@@ -24,7 +24,9 @@ root.render(
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-          <Routes />
+          <Suspense fallback={<div>loading...</div>}>
+            <Routes />
+          </Suspense>
         </BrowserRouter>
       </QueryClientProvider>
     </RecoilRoot>

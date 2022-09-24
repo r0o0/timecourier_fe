@@ -1,3 +1,5 @@
+import { Text } from '~components/index';
+
 import LetterField from '../LetterField/LetterField';
 import LetterFormComplete from '../LetterFormComplete/LetterFormComplete';
 import LetterPreview from '../LetterPreview/LetterPreview';
@@ -8,7 +10,7 @@ import SenderField from '../SenderField/SenderField';
 import { LetterFormContentProps } from './LetterFormContent.types';
 
 function LetterFormContent(props: LetterFormContentProps) {
-  const { activeStep } = props;
+  const { activeStep = 1 } = props;
 
   switch (activeStep) {
     case 1:
@@ -24,7 +26,7 @@ function LetterFormContent(props: LetterFormContentProps) {
     case 6:
       return <LetterFormComplete />;
     default:
-      return null;
+      return <Text color="white">예기치 못한 문제가 발생했습니다. 관리지에게 문의 주세요.</Text>;
   }
 }
 

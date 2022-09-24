@@ -4,6 +4,7 @@ import { vars } from '~components/styles/global.css';
 
 const letterPreviewSize = '48px';
 const textareaPaddingY = '14px';
+const textareaRowHeight = 20;
 
 export const letterTextareaHeaderStyle = style({
   display: 'flex',
@@ -15,6 +16,7 @@ export const letterTextareaHeaderStyle = style({
 export const letterTextareaStyle = style({
   flex: '1 1 auto',
   width: '100%',
+  minHeight: textareaRowHeight * 6,
   padding: `${textareaPaddingY} 16px`,
   overflow: 'auto',
   backgroundColor: vars.colors.gray900,
@@ -34,6 +36,7 @@ export const letterTextareaStyle = style({
 });
 
 export const letterPreviewStyle = style({
+  flex: '0 0 auto',
   display: 'inline-flex',
   justifyContent: 'center',
   alignItems: 'center',
