@@ -23,6 +23,8 @@ export const letterTextareaStyle = style({
   borderRadius: '13px',
   resize: 'none',
   color: vars.colors.white,
+  fontFamily: vars.fonts.body.family,
+  fontSize: vars.fonts.body.size[3],
 
   '::-webkit-scrollbar': { width: '15px' },
   '::-webkit-scrollbar-thumb': {
