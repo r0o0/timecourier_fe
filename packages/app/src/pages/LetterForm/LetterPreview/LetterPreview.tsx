@@ -49,7 +49,7 @@ function LetterPreview() {
       imageId,
       letterStatus: 'DONE',
     });
-    shareWithKakao({ id, receivedDate, receiverName });
+    shareWithKakao({ id, receivedDate, senderName });
   };
 
   const isPastDate = useIsPastDate();

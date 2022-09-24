@@ -11,9 +11,9 @@ export const useShareWithKakao = () => {
 
   return ({
     id,
-    receiverName,
+    senderName,
     receivedDate,
-  }: Required<Pick<APISchema.Letter, 'id' | 'receiverName' | 'receivedDate'>>) => {
+  }: Required<Pick<APISchema.Letter, 'id' | 'senderName' | 'receivedDate'>>) => {
     if (!kakao.isInitialized()) {
       kakao.init(env.kakaoShareKey);
     }
@@ -21,7 +21,7 @@ export const useShareWithKakao = () => {
     kakao.Share.sendCustom({
       templateId: 80393,
       templateArgs: {
-        name: `\nFrom. ${receiverName}`,
+        name: `\nFrom. ${senderName}`,
         day: `${receivedDate}\n`,
         linkUrl: `reminder/${id}`,
       },
