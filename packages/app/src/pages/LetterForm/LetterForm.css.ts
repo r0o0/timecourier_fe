@@ -22,7 +22,7 @@ export const letterFormContentStyle = style({
 
 export const letterFormActionsStyle = style({
   position: 'sticky',
-  bottom: 0,
+  bottom: 20,
   display: 'flex',
   flexDirection: 'row-reverse',
   padding: `0 ${letterFormPaddingX}`,
