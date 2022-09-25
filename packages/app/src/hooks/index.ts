@@ -1,4 +1,12 @@
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import {
+  Dispatch,
+  RefObject,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 
@@ -75,3 +83,16 @@ export function usePageVisibilityChange(handler: () => void | Promise<void>) {
     };
   }, [handler]);
 }
+
+export const useIsMobile = () => /Mobi/i.test(navigator.userAgent);
+
+export const useFocus = <E extends HTMLElement>(ref: RefObject<E>) => {
+  const isMobile = useIsMobile();
+  return useCallback(() => {
+    if (isMobile) {
+      return;
+    }
+
+    ref.current?.focus();
+  }, [isMobile]);
+};
