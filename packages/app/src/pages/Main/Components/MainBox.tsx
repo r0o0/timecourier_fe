@@ -2,15 +2,16 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as ArrowLargImg } from '~components/assets/icons/main_arrowLarge.svg';
-import { ReactComponent as MainSend } from '~components/assets/images/main_mailbox.svg';
 import { ReactComponent as SendBox } from '~components/assets/images/main_sendBox.svg';
 import { ReactComponent as WriteBox } from '~components/assets/images/main_writeBox.svg';
-import { ReactComponent as MainWrite } from '~components/assets/images/main_writeLetter.svg';
+import mainSend from '~components/assets/misc/main_mailbox.svg';
+import mainWrite from '~components/assets/misc/main_writeLetter.svg';
 import { Heading } from '~components/index';
 
 import {
   arrowLargeStyle,
   boxImgStyle,
+  imageBoxStyle,
   mainBoxRecipe,
   menuTextStyle,
   oneTagStyle,
@@ -28,16 +29,20 @@ function MainBox(props: mainBoxProps) {
         onMouseEnter={() => hover(false)}
         onMouseLeave={() => hover(true)}
       >
-        {menuName === '편지쓰기' && (
-          <>
-            <SendBox className={boxImgStyle} />
-            <MainSend className={oneTagStyle} />
-          </>
-        )}
         {menuName === '보낸편지함' && (
           <>
+            <SendBox className={boxImgStyle} />
+            <div className={imageBoxStyle}>
+              <img className={oneTagStyle} alt="zz" src={mainSend} />
+            </div>
+          </>
+        )}
+        {menuName === '편지쓰기' && (
+          <>
             <WriteBox className={boxImgStyle} />
-            <MainWrite className={oneTagStyle} />
+            <div className={imageBoxStyle}>
+              <img className={oneTagStyle} alt="zz" src={mainWrite} />
+            </div>
           </>
         )}
         <ArrowLargImg className={arrowLargeStyle} />
