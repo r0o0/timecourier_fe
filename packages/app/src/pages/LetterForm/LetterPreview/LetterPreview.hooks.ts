@@ -25,6 +25,9 @@ export const useShareWithKakao = () => {
         day: `${receivedDate}\n`,
         linkUrl: `reminder/${id}`,
       },
+      callback: () => {
+        setStep(6);
+      },
       success: () => {
         setStep(6);
       },
