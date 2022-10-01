@@ -6,13 +6,15 @@ import { useMutation } from '@tanstack/react-query';
 
 import { letterAPI } from '~/api';
 import { letterFormState } from '~/pages/LetterForm/LetterForm.atoms';
+import { useValidateReceivedDateField } from '~/pages/LetterForm/ReceiveDateField/ReceivedDate.hooks';
 import { NotificationToaster } from '~components/index';
 
 import { useValidateNameField } from './NameField/NameField.hooks';
 
 export const useValidateLetterForm = (activeStep: number) => {
-  const validateNameField = useValidateNameField();
   const letterForm = useRecoilValue(letterFormState);
+  const validateNameField = useValidateNameField();
+  const validateReceivedDateField = useValidateReceivedDateField();
 
   return useCallback(() => {
     if (activeStep === 1) {
@@ -21,6 +23,10 @@ export const useValidateLetterForm = (activeStep: number) => {
 
     if (activeStep === 2) {
       return validateNameField();
+    }
+
+    if (activeStep === 3) {
+      return validateReceivedDateField();
     }
 
     if (activeStep === 4) {
