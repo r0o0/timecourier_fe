@@ -25,9 +25,9 @@ export const useShareWithKakao = () => {
         day: `${receivedDate}\n`,
         linkUrl: `reminder/${id}`,
       },
-      // callback: () => {
-      //   setStep(6);
-      // },
+      callback: () => {
+        setStep(6);
+      },
       success: () => {
         setStep(6);
       },
@@ -35,6 +35,5 @@ export const useShareWithKakao = () => {
         NotificationToaster.show('카카오톡 공유가 실패했습니다. 다시 시도 해 주시요.');
       },
     });
-    console.log('sent');
   };
 };
