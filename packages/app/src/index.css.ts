@@ -8,10 +8,6 @@ globalStyle('html', {
 
 globalStyle('body', {
   boxSizing: 'border-box',
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  right: 0,
   fontFamily: vars.fonts.body.family,
   WebkitFontSmoothing: 'antialiased',
   MozOsxFontSmoothing: 'grayscale',

@@ -65,7 +65,10 @@ function LetterForm() {
 
   const saveDraftLetter = useSaveDraftLetter();
   const saveDraftCondition =
-    step > 1 && letterForm.letterStatus !== LetterStatus.DONE && !!letterForm.receiverName;
+    step > 1 &&
+    step < 5 &&
+    letterForm.letterStatus === LetterStatus.DRAFT &&
+    !!letterForm.receiverName;
   usePageVisibilityChange(() => {
     if (saveDraftCondition) {
       saveDraftLetter({ letter: letterForm, method: letterForm.id ? 'PUT' : 'POST' });
