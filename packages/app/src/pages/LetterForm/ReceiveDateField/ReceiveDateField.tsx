@@ -19,7 +19,7 @@ const getTime = (date: string | number | Date | undefined): string | undefined =
   date ? moment(date).format('HH:mm') : undefined;
 const formatToReceivedDate = (date: Date, time: string): string =>
   `${moment(date).format('YYYY-MM-DD')} ${time}:00`;
-const isValidTime = (newDate: string): boolean => {
+export const isValidTime = (newDate: string): boolean => {
   const maxDate = moment(getCurrentDate()).add(1, 'y').subtract(1, 'd');
   return moment(newDate).isBetween(moment(getCurrentDate()).subtract(1, 'minutes'), maxDate);
 };
