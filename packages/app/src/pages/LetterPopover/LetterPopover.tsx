@@ -3,10 +3,10 @@ import classNames from 'classnames';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
-import { LetterStatus } from '~/const';
 import { letterFormState } from '~/pages/LetterForm/LetterForm.atoms';
 import { Button, LetterDate, LetterImage, LetterTemplate } from '~components/index';
 import { layoutSprinkles } from '~components/styles/layout.css';
+import { isDoneLetter, isDraftLetter } from '~utils/letter';
 
 import {
   letterPopoverContentStyle,
@@ -65,16 +65,20 @@ function LetterPopover(props: LetterPopoverProps) {
           />
           <div
             className={layoutSprinkles({ display: 'flex', flex: 'column' })}
-            style={{ gap: 5, marginTop: 'auto' }}
+            style={{
+              gap: 5,
+              marginTop: 'auto',
+              marginBottom: isDoneLetter(letterStatus) ? 40 : 0,
+            }}
           >
             {createdAt && (
               <LetterDate
-                dateType={letterStatus === LetterStatus.DRAFT ? 'write' : 'sent'}
+                dateType={isDraftLetter(letterStatus) ? 'write' : 'sent'}
                 date={createdAt}
               />
             )}
             {receivedDate && <LetterDate dateType="receive" date={receivedDate} />}
-            {letterStatus === LetterStatus.DRAFT && (
+            {isDraftLetter(letterStatus) && (
               <Button background="gradient" style={{ margin: '26px 0 20px' }} onClick={handleClick}>
                 이어 쓸래요
               </Button>
