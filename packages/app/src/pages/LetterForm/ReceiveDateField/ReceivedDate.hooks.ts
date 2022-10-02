@@ -1,20 +1,19 @@
 import { useCallback } from 'react';
-import { useRecoilValue } from 'recoil';
 
-import { letterFormState } from '~/pages/LetterForm/LetterForm.atoms';
+import { useIsPastDate } from '../LetterForm.hooks';
 
 import { isValidTime } from './ReceiveDateField';
 
 export const useValidateReceivedDateField = () => {
-  const letterForm = useRecoilValue(letterFormState);
+  const isPastDate = useIsPastDate();
+  return useCallback(
+    (receivedDate: string | undefined) => {
+      if (!receivedDate || isPastDate(receivedDate) || !isValidTime(receivedDate)) {
+        return false;
+      }
 
-  return useCallback(() => {
-    const { receivedDate } = letterForm;
-
-    if (!receivedDate || !isValidTime(receivedDate)) {
-      return false;
-    }
-
-    return true;
-  }, [letterForm.receivedDate]);
+      return true;
+    },
+    [isPastDate],
+  );
 };

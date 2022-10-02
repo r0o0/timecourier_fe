@@ -24,9 +24,9 @@ export const letterFormContentStyle = style({
 
 export const letterFormActionsBaseStyle = style({
   position: 'sticky',
-  bottom: 20,
+  bottom: 16,
   display: 'flex',
-  padding: '20px 0',
+  padding: '8px 0',
   backgroundColor: vars.colors.black,
 });
 

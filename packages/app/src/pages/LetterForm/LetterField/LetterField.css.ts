@@ -16,7 +16,7 @@ export const letterTextareaHeaderStyle = style({
 export const letterTextareaStyle = style({
   flex: '1 1 auto',
   width: '100%',
-  minHeight: textareaRowHeight * 6,
+  minHeight: textareaRowHeight * 15,
   padding: `${textareaPaddingY} 16px`,
   overflow: 'auto',
   backgroundColor: vars.colors.gray900,

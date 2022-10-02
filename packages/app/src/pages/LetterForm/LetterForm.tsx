@@ -94,7 +94,7 @@ function LetterForm() {
   return (
     <div className={letterFormStyle}>
       <ProgressBar steps={totalSteps} activeStep={step} />
-      <div className={letterFormContentStyle}>
+      <div id="letter-form-wrapper" className={letterFormContentStyle}>
         <LetterFormContent activeStep={step} />
       </div>
       {!(step === 5 || step === 6) && (
