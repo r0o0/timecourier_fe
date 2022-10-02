@@ -1,4 +1,4 @@
-import { Heading, Text } from '@timeletter_fe/components/src';
+import { Text } from '@timeletter_fe/components/src';
 import { gradientOutlineRecipe } from '@timeletter_fe/components/src/styles/gradient.css';
 
 import { contextBoxStyle } from './ReminderContent.css';
@@ -8,7 +8,7 @@ function ReminderContent(prop: ReminderContentProps) {
   const { sendName, receiverName, openType } = prop;
   return (
     <div className={contextBoxStyle}>
-      <Heading size={1} color="white" style={{ textAlign: 'center', lineHeight: 2 }}>
+      <Text size={3} color="white" style={{ textAlign: 'center', lineHeight: 2 }}>
         {openType && <>이제, </>}
         <Text
           className={gradientOutlineRecipe({ background: 'black' })}
@@ -39,7 +39,7 @@ function ReminderContent(prop: ReminderContentProps) {
             님에게 보낸 편지가 <br /> 시간선을 따라 날아오는 중이에요.
           </>
         )}
-      </Heading>
+      </Text>
     </div>
   );
 }
