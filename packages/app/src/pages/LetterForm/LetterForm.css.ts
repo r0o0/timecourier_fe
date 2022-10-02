@@ -39,4 +39,4 @@ export const letterFormActionsStyle = style([
   },
 ]);
 
-export const letterFormActionButtonStyle = style({ width: 64 });
+export const letterFormActionButtonStyle = style({ width: 54, height: 54, borderRadius: 12 });

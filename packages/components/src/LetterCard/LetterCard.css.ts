@@ -5,7 +5,6 @@ import { spacing } from '../styles/tools';
 
 export const letterCardStyle = style({
   width: '100%',
-  maxHeight: '153px',
   padding: `16px ${spacing(16)}`,
   background: vars.colors.white,
   borderRadius: '12px',

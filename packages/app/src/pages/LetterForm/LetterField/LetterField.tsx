@@ -22,6 +22,7 @@ function LetterField() {
   const handleContentChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setContent(event.target.value);
   };
+
   const handleContentBlur = () => {
     setLetterForm({ ...letterForm, content });
   };
@@ -81,9 +82,6 @@ function LetterField() {
 
   return (
     <>
-      <Text as="h2" color="white" size={4}>
-        편지를 작성해 주세요.
-      </Text>
       <div className={letterTextareaHeaderStyle}>
         <Text as="span" color="secondary" size={4} fontWeight="bold">
           TO: {letterForm.receiverName}
@@ -95,6 +93,7 @@ function LetterField() {
       <textarea
         ref={textareaRef}
         className={letterTextareaStyle}
+        placeholder="편지를 작성해 주세요."
         value={content}
         onChange={handleContentChange}
         onBlur={handleContentBlur}

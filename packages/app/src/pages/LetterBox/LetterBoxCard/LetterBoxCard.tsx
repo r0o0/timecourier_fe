@@ -4,17 +4,15 @@ import { useSetRecoilState } from 'recoil';
 import { useMutation } from '@tanstack/react-query';
 
 import { letterAPI } from '~/api';
-import { LetterStatus } from '~/const';
 import { useGetImageByImageId, useImageDataURLState } from '~/hooks';
-import {
-  letterBoxCardTrashIconStyle,
-  letterBoxCardWrapperStyle,
-} from '~/pages/LetterBox/LetterBoxCard/LetterBoxCard.css';
-import { letterDraftBoxState } from '~/pages/LetterBox/LetterBoxContent/LetterBoxContent.atoms';
 import LetterPopover from '~/pages/LetterPopover/LetterPopover';
 import { ReactComponent as TrashIcon } from '~components/assets/icons/trash.svg';
 import { Button, LetterCard, NotificationToaster } from '~components/index';
+import { isDraftLetter } from '~utils/letter';
 
+import { letterDraftBoxState } from '../LetterBoxContent/LetterBoxContent.atoms';
+
+import { letterBoxCardTrashIconStyle, letterBoxCardWrapperStyle } from './LetterBoxCard.css';
 import { LetterBoxCardProps } from './LetterBoxCard.types';
 
 function LetterBoxCard(props: LetterBoxCardProps) {
@@ -65,7 +63,7 @@ function LetterBoxCard(props: LetterBoxCardProps) {
     <>
       <div className={letterBoxCardWrapperStyle}>
         <LetterCard {...letter} image={image} onClick={handleClick} />
-        {letterStatus === LetterStatus.DRAFT && (
+        {isDraftLetter(letterStatus) && (
           <Button
             className={letterBoxCardTrashIconStyle}
             variant="transparent"

@@ -30,7 +30,7 @@ function LetterDate(props: LetterDateProps) {
       className={classNames(layoutSprinkles({ display: 'flex', items: 'center' }), letterDateStyle)}
     >
       {icon[dateType]}
-      <Text size={1}>
+      <Text as="span" style={{ fontSize: 'inherit' }}>
         {label[dateType]} : {moment(date).format('lll')}
       </Text>
     </div>

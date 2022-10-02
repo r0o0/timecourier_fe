@@ -6,6 +6,7 @@ import { LetterStatus } from '~/const';
 import { useBlocker, usePageVisibilityChange } from '~/hooks';
 import { userState } from '~/store/user.atoms';
 import { Button, ProgressBar } from '~components/index';
+import { isDraftLetter } from '~utils/letter';
 
 import LetterFormContent from './LetterFormContent/LetterFormContent';
 import { letterFormState, letterFormStepState, letterImageState } from './LetterForm.atoms';
@@ -67,7 +68,7 @@ function LetterForm() {
   const saveDraftCondition =
     step > 1 &&
     step < 6 &&
-    letterForm.letterStatus === LetterStatus.DRAFT &&
+    isDraftLetter(letterForm.letterStatus ?? LetterStatus.DRAFT) &&
     !!letterForm.receiverName;
   usePageVisibilityChange(() => {
     if (saveDraftCondition) {
