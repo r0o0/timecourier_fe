@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { Text } from '~components/index';
@@ -13,6 +13,17 @@ function LetterField() {
   const [letterForm, setLetterForm] = useRecoilState(letterFormState);
 
   const [content, setContent] = useState<string | undefined>(letterForm.content);
+
+  const textareaHeaderRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    window.requestAnimationFrame(() => {
+      const target = textareaHeaderRef.current?.getBoundingClientRect();
+      document.querySelector('#letter-form-wrapper')?.scrollTo({
+        top: (target?.y ?? 0) - (target?.height ?? 0) / 2 - 52,
+        behavior: 'smooth',
+      });
+    });
+  }, []);
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   useEffect(() => {
@@ -84,7 +95,7 @@ function LetterField() {
       <Text as="h2" color="white" size={4}>
         편지를 작성해 주세요.
       </Text>
-      <div className={letterTextareaHeaderStyle}>
+      <div ref={textareaHeaderRef} className={letterTextareaHeaderStyle}>
         <Text as="span" color="secondary" size={4} fontWeight="bold">
           TO: {letterForm.receiverName}
         </Text>
