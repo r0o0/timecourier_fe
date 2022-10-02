@@ -10,13 +10,13 @@ export const letterTextareaHeaderStyle = style({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  margin: '20px 0 12px',
+  marginBottom: '12px',
 });
 
 export const letterTextareaStyle = style({
   flex: '1 1 auto',
   width: '100%',
-  minHeight: textareaRowHeight * 8,
+  minHeight: textareaRowHeight * 6,
   padding: `${textareaPaddingY} 16px`,
   overflow: 'auto',
   backgroundColor: vars.colors.gray900,
