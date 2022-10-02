@@ -71,7 +71,8 @@ function LetterPreview() {
 
   return (
     <>
-      <Text as="h2" color="white">
+      {/* TODO Make LetterFormHeading component */}
+      <Text as="h2" color="white" size={4}>
         잘못 적은 부분이 없는지 확인해 주세요.
       </Text>
       <LetterTemplate
