@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { ReactComponent as Logo } from '~components/assets/icons/gnb_log.svg';
 import { ReactComponent as MenuIcon } from '~components/assets/icons/sidebar_menu.svg';
@@ -13,11 +14,13 @@ function Nav() {
 
   const handleMenuIconClick = () => setShowSideBar(!showSideBar);
 
-  // TODO: Heading 부분 로고 이미지 교체 요청
+  const navigate = useNavigate();
   return (
     <header className={navWrapperStyle}>
       <nav className={navStyle}>
-        <Logo />
+        <Button variant="transparent" iconOnly onClick={() => navigate('/', { replace: true })}>
+          <Logo />
+        </Button>
         <Button
           className={navButtonStyle}
           variant="transparent"
