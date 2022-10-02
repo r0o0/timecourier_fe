@@ -40,5 +40,5 @@ globalStyle(`${timePickerStyle} .bp4-icon svg`, {
 });
 
 globalStyle(`${timePickerStyle} .bp4-timepicker-arrow-button + .bp4-timepicker-arrow-button`, {
-  marginLeft: 23,
+  marginLeft: 45,
 });
