@@ -26,7 +26,7 @@ export const useValidateLetterForm = (activeStep: number) => {
     }
 
     if (activeStep === 3) {
-      return validateReceivedDateField();
+      return validateReceivedDateField(letterForm.receivedDate);
     }
 
     if (activeStep === 4) {
@@ -37,7 +37,7 @@ export const useValidateLetterForm = (activeStep: number) => {
     }
 
     return true;
-  }, [activeStep, validateNameField, letterForm.content]);
+  }, [activeStep, validateNameField, letterForm.content, letterForm.receivedDate]);
 };
 
 export const useAddLetter = (letterForm: APISchema.Letter) =>
