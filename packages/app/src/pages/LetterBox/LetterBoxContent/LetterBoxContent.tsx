@@ -4,11 +4,11 @@ import { useRecoilState } from 'recoil';
 import { useQuery } from '@tanstack/react-query';
 
 import { letterAPI } from '~/api';
-import { LetterStatus } from '~/const';
 import { letterBoxLabelByType } from '~/pages/LetterBox/LetterBox.const';
 import { letterDraftBoxState } from '~/pages/LetterBox/LetterBoxContent/LetterBoxContent.atoms';
 import { Text } from '~components/index';
 import { layoutSprinkles } from '~components/styles/layout.css';
+import { isDoneLetter, isDraftLetter } from '~utils/letter';
 
 import LetterBoxCard from '../LetterBoxCard/LetterBoxCard';
 
@@ -24,11 +24,11 @@ function LetterBoxContent(props: LetterBoxContentProps) {
   } = useQuery(['lettersByStatus', letterStatus], () => letterAPI.getLetters(), { cacheTime: 1 });
 
   const doneLetters = useMemo(
-    () => letters?.filter((letter) => letter.letterStatus === LetterStatus.DONE),
+    () => letters?.filter((letter) => isDoneLetter(letter.letterStatus)),
     [letters],
   );
   const draftLetters = useMemo(
-    () => letters?.filter((letter) => letter.letterStatus === LetterStatus.DRAFT),
+    () => letters?.filter((letter) => isDraftLetter(letter.letterStatus)),
     [letters],
   );
 
@@ -51,8 +51,8 @@ function LetterBoxContent(props: LetterBoxContentProps) {
 
   if (
     isLoading ||
-    (letterStatus === LetterStatus.DRAFT &&
-      letters?.find((it) => it.letterStatus === LetterStatus.DRAFT) &&
+    (isDraftLetter(letterStatus) &&
+      letters?.find((it) => isDraftLetter(it.letterStatus)) &&
       draftLetterMap.current.size === 0)
   ) {
     return (
@@ -78,11 +78,11 @@ function LetterBoxContent(props: LetterBoxContentProps) {
 
   return (
     <div className={layoutSprinkles({ display: 'flex', flex: 'column' })} style={{ gap: 12 }}>
-      {letterStatus === LetterStatus.DRAFT &&
+      {isDraftLetter(letterStatus) &&
         letterDraftBox.map((letter) => (
           <LetterBoxCard key={letter.id} letter={letter} draftLetterMap={draftLetterMap} />
         ))}
-      {letterStatus === LetterStatus.DONE &&
+      {isDoneLetter(letterStatus) &&
         doneLetters?.map((letter) => (
           <LetterBoxCard key={letter.id} letter={letter} draftLetterMap={draftLetterMap} />
         ))}
