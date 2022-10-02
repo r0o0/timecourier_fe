@@ -1,5 +1,6 @@
 import {
   Dispatch,
+  MutableRefObject,
   RefObject,
   SetStateAction,
   useCallback,
@@ -64,11 +65,12 @@ export const useBeforeunload = (handler: (event: BeforeUnloadEvent) => void) => 
   }, []);
 };
 
-export function useBlocker(blocker: Blocker, when = true): void {
+export function useBlocker(blocker: Blocker, blockRef: MutableRefObject<boolean>): void {
   const navigator = useContext(UNSAFE_NavigationContext).navigator as unknown as History;
 
   useEffect(() => {
-    if (!when) return;
+    console.log({ blockRef: blockRef.current });
+    if (!blockRef.current) return;
 
     const unblock = navigator.block((tx: Transition) => {
       const autoUnblockingTx = {
@@ -84,7 +86,7 @@ export function useBlocker(blocker: Blocker, when = true): void {
 
     // eslint-disable-next-line consistent-return
     return unblock;
-  }, [navigator, blocker, when]);
+  }, [navigator, blocker]);
 }
 
 export function usePageVisibilityChange(handler: () => void | Promise<void>) {

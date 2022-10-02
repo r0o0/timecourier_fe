@@ -1,8 +1,9 @@
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { useMutation } from '@tanstack/react-query';
 
 import { letterAPI } from '~/api';
+import { LetterStatus } from '~/const';
 import { useIsPastDate } from '~/pages/LetterForm/LetterForm.hooks';
 import { letterPreviewActionsStyle } from '~/pages/LetterForm/LetterPreview/LetterPreview.css';
 import { useShareWithKakao } from '~/pages/LetterForm/LetterPreview/LetterPreview.hooks';
@@ -13,8 +14,9 @@ import { letterFormState, letterFormStepState, letterImageState } from '../Lette
 
 function LetterPreview() {
   const letterImage = useRecoilValue(letterImageState);
+  const [letterForm, setLetterForm] = useRecoilState(letterFormState);
   const { userID, id, receivedDate, senderName, receiverName, content, imageId, urlSlug } =
-    useRecoilValue(letterFormState);
+    letterForm;
   const setStep = useSetRecoilState(letterFormStepState);
 
   const saveLetter = useMutation(
@@ -39,6 +41,7 @@ function LetterPreview() {
     if (!userID || !id || !receivedDate || !senderName || !receiverName || !content || !urlSlug) {
       return;
     }
+    const letterStatus = LetterStatus.DONE;
     await saveLetter({
       userID,
       id,
@@ -48,7 +51,11 @@ function LetterPreview() {
       content,
       imageId,
       urlSlug,
-      letterStatus: 'DONE',
+      letterStatus,
+    });
+    setLetterForm({
+      ...letterForm,
+      letterStatus,
     });
     shareWithKakao({ receivedDate, senderName, urlSlug });
   };
