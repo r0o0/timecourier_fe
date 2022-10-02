@@ -66,7 +66,7 @@ function LetterForm() {
   const saveDraftLetter = useSaveDraftLetter();
   const saveDraftCondition =
     step > 1 &&
-    step < 5 &&
+    step < 6 &&
     letterForm.letterStatus === LetterStatus.DRAFT &&
     !!letterForm.receiverName;
   usePageVisibilityChange(() => {
@@ -89,7 +89,7 @@ function LetterForm() {
         },
       },
     );
-  }, blockRef.current);
+  }, blockRef);
 
   return (
     <div className={letterFormStyle}>
