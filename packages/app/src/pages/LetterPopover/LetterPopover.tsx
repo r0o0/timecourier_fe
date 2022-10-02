@@ -74,9 +74,11 @@ function LetterPopover(props: LetterPopoverProps) {
               />
             )}
             {receivedDate && <LetterDate dateType="receive" date={receivedDate} />}
-            <Button background="gradient" style={{ margin: '26px 0 20px' }} onClick={handleClick}>
-              이어 쓸래요
-            </Button>
+            {letterStatus === LetterStatus.DRAFT && (
+              <Button background="gradient" style={{ margin: '26px 0 20px' }} onClick={handleClick}>
+                이어 쓸래요
+              </Button>
+            )}
           </div>
         </div>
       </div>
