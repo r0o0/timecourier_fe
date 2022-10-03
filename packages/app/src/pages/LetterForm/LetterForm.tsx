@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
+import { reminderAPI } from '~/api';
 import { LetterStatus } from '~/const';
 import { useBlocker, usePageVisibilityChange } from '~/hooks';
 import { userState } from '~/store/user.atoms';
@@ -72,7 +73,17 @@ function LetterForm() {
     !!letterForm.receiverName;
   usePageVisibilityChange(() => {
     if (saveDraftCondition) {
-      saveDraftLetter({ letter: letterForm, method: letterForm.id ? 'PUT' : 'POST' });
+      if(step > 4) {
+        reminderAPI.reminderLetter(letterForm.urlSlug!).then((reonse) => {
+          reonse.forEach((response) => {
+            if (response.letterStatus === 'DRAFT') {
+              saveDraftLetter({ letter: letterForm, method: letterForm.id ? 'PUT' : 'POST' });
+            }
+          });
+        });
+      } else {
+        saveDraftLetter({ letter: letterForm, method: letterForm.id ? 'PUT' : 'POST' });
+      }
     }
   });
   const navigate = useNavigate();

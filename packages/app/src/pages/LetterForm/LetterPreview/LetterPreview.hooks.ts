@@ -41,7 +41,7 @@ export const useShareWithKakao = () => {
           }
         });
       });
-    }, 3000);
+    }, 1000);
   };
 };
 
