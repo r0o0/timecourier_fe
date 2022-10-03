@@ -12,6 +12,5 @@ export const timeStyle = style({
   lineHeight: '23px',
   textAlign: 'center',
   color: '#FFFFFF',
-  marginTop: '45%',
   padding: '0 15px',
 });

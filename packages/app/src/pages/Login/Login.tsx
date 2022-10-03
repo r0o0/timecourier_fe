@@ -18,7 +18,14 @@ import { colorSystem } from '~components/styles/colors.css';
 import { fontSystem } from '~components/styles/fonts.css';
 
 import LoginTimer from './TimerComponents/TimerComponents';
-import { kakaoLoginStyle, linkBottomStyle, loginBodyStyle, txtBottomStyle } from './Login.css';
+import {
+  kakaoLoginStyle,
+  linkBottomStyle,
+  loginBodyStyle,
+  loginIconStyle,
+  loginTextBodyStyle,
+  txtBottomStyle,
+} from './Login.css';
 import { useGetKakaoAccessToken } from './Login.hooks';
 
 const expires = moment().add(1, 'y').toDate();
@@ -48,7 +55,7 @@ function Login() {
 
     setUser(data);
     // TODO 인트로 페이지로 넘어갈지 메인 페이지로 넘어갈지 데이터 받아와서 조건 생성
-    if (data.tutorialYN){
+    if (data.tutorialYN) {
       navigate('/intro', { replace: true, state: { nickName: data.nickname || data.username } });
     } else {
       navigate('/', { replace: true });
@@ -76,41 +83,49 @@ function Login() {
       }}
       className={loginBodyStyle}
     >
-      <img style={{ position: 'absolute', maxWidth: '100%' }} src={LoginBorder} alt="img" />
-      <LoginTimer />
-      <Logo style={{ position: 'absolute' }} />
-      <Button
-        childrenStyle={{
-          color: colorSystem.black,
-          fontSize: fontSystem.body.size[3],
-          gap: 10,
-        }}
-        className={kakaoLoginStyle}
-        style={{ marginTop: '60%' }}
-        size="small"
-        background="yellow"
-        color={colorSystem.black}
-        onClick={handleClick}
-      >
-        <KaKaoIcon />
-        카카오로 5초만에 시작하기
-      </Button>
-      <span className={txtBottomStyle}>
-        시작할 경우, 타임레터의 서비스 이용약관과
-        <br />
-        개인정보 보호정책에 동의하게 됩니다.
-      </span>
-      <span className={linkBottomStyle}>
-        <a
-          href={`${env.noctionURL}98b4fa790e0f4563a08189679fc91d5e#1324a9245b87421a84aff6b8357f72c8`}
+      <div className={loginIconStyle}>
+        <img
+          style={{ position: 'absolute', width: '100%', maxWidth: '500px' }}
+          src={LoginBorder}
+          alt="img"
+        />
+        <Logo style={{ position: 'absolute', width: '100%', maxWidth: '500px' }} />
+      </div>
+      <div className={loginTextBodyStyle}>
+        <LoginTimer />
+        <Button
+          childrenStyle={{
+            color: colorSystem.black,
+            fontSize: fontSystem.body.size[3],
+            gap: 10,
+          }}
+          className={kakaoLoginStyle}
+          style={{ marginTop: 'calc((360 / 600) * 100%)' }}
+          size="small"
+          background="yellow"
+          color={colorSystem.black}
+          onClick={handleClick}
         >
-          사업자 정보확인
-        </a>
-        <p>|</p>
-        <a href={`${env.noctionURL}91772865c97d43e68101a5486e229e4d`}>이용약관</a>
-        <p>|</p>
-        <a href={`${env.noctionURL}f964912552da433c8ac2e7611549ecdf`}>개인정보 처리방침</a>
-      </span>
+          <KaKaoIcon />
+          카카오로 5초만에 시작하기
+        </Button>
+        <span className={txtBottomStyle}>
+          시작할 경우, 타임레터의 서비스 이용약관과
+          <br />
+          개인정보 보호정책에 동의하게 됩니다.
+        </span>
+        <span className={linkBottomStyle}>
+          <a
+            href={`${env.noctionURL}98b4fa790e0f4563a08189679fc91d5e#1324a9245b87421a84aff6b8357f72c8`}
+          >
+            사업자 정보확인
+          </a>
+          <p>|</p>
+          <a href={`${env.noctionURL}91772865c97d43e68101a5486e229e4d`}>이용약관</a>
+          <p>|</p>
+          <a href={`${env.noctionURL}f964912552da433c8ac2e7611549ecdf`}>개인정보 처리방침</a>
+        </span>
+      </div>
     </div>
   );
 }
