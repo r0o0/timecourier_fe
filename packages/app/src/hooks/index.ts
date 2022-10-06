@@ -69,7 +69,6 @@ export function useBlocker(blocker: Blocker, blockRef: MutableRefObject<boolean>
   const navigator = useContext(UNSAFE_NavigationContext).navigator as unknown as History;
 
   useEffect(() => {
-    console.log({ blockRef: blockRef.current });
     if (!blockRef.current) return;
 
     const unblock = navigator.block((tx: Transition) => {

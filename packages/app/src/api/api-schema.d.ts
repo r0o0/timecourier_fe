@@ -20,17 +20,11 @@ declare namespace APISchema {
     extends Required<
       Pick<
         Letter,
-        | 'userID'
-        | 'id'
-        | 'senderName'
-        | 'receiverName'
-        | 'receivedDate'
-        | 'content'
-        | 'letterStatus'
-        | 'urlSlug'
+        'userID' | 'id' | 'senderName' | 'receiverName' | 'receivedDate' | 'content' | 'urlSlug'
       >
     > {
     imageId?: Letter['imageId'];
+    letterStatus?: Letter['letterStatus'];
   }
 
   interface SaveDraftLetter {

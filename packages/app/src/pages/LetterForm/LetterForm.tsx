@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
-import { reminderAPI } from '~/api';
 import { LetterStatus } from '~/const';
 import { useBlocker, usePageVisibilityChange } from '~/hooks';
 import { userState } from '~/store/user.atoms';
@@ -71,19 +70,13 @@ function LetterForm() {
     step < 6 &&
     isDraftLetter(letterForm.letterStatus ?? LetterStatus.DRAFT) &&
     !!letterForm.receiverName;
+  const saveDraftParams: APISchema.SaveDraftLetter = {
+    letter: letterForm,
+    method: letterForm.id ? 'PUT' : 'POST',
+  };
   usePageVisibilityChange(() => {
     if (saveDraftCondition) {
-      if(step > 4) {
-        reminderAPI.reminderLetter(letterForm.urlSlug!).then((reonse) => {
-          reonse.forEach((response) => {
-            if (response.letterStatus === 'DRAFT') {
-              saveDraftLetter({ letter: letterForm, method: letterForm.id ? 'PUT' : 'POST' });
-            }
-          });
-        });
-      } else {
-        saveDraftLetter({ letter: letterForm, method: letterForm.id ? 'PUT' : 'POST' });
-      }
+      saveDraftLetter(saveDraftParams);
     }
   });
   const navigate = useNavigate();
@@ -93,14 +86,11 @@ function LetterForm() {
   }, [saveDraftCondition]);
   useBlocker((blocker: any) => {
     blockRef.current = false;
-    saveDraftLetter(
-      { letter: letterForm, method: letterForm.id ? 'PUT' : 'POST' },
-      {
-        onSuccess: () => {
-          navigate(blocker.location.pathname, { replace: true });
-        },
+    saveDraftLetter(saveDraftParams, {
+      onSuccess: () => {
+        navigate(blocker.location.pathname, { replace: true });
       },
-    );
+    });
   }, blockRef);
 
   return (
