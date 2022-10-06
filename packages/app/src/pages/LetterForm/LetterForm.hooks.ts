@@ -25,8 +25,11 @@ export const useValidateLetterForm = (activeStep: number) => {
       return validateNameField();
     }
 
-    if (activeStep === 3) {
-      return validateReceivedDateField(letterForm.receivedDate);
+    if(!validateReceivedDateField(letterForm.receivedDate)) {
+       NotificationToaster.show(
+         '편지 시간은 최소  30분, 최대 1년 뒤인 미래 시간으로 설정해 주세요.',
+       );
+       return false
     }
 
     if (activeStep === 4) {

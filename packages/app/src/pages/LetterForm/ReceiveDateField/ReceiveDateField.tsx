@@ -11,24 +11,21 @@ import { letterFormState } from '../LetterForm.atoms';
 
 const errorMessage = {
   pastTime: '설정한 시간이 벌써 과거가 됐어요. 편지 보내기 전에 다시 한번 시간을 선택해 주세요.',
-  invalidTime: '편지 시간은 최소 하루, 최대 1년 뒤인 미래 시간으로 설정해 주세요.',
+  invalidTime: '편지 시간은 최소 30분, 최대 1년 뒤인 미래 시간으로 설정해 주세요.',
 };
 
-const getCurrentDate = (): Date => moment().add(1, 'd').seconds(0).toDate();
-const getTime = (date: string | number | Date | undefined): string | undefined =>
-  date ? moment(date).format('HH:mm') : undefined;
-const formatToReceivedDate = (date: Date, time: string): string =>
-  `${moment(date).format('YYYY-MM-DD')} ${time}:00`;
+const getCurrentDate = (): Date => moment().seconds(0).toDate();
+const getTime = (date: string | number | Date | undefined): string | undefined => date ? moment(date).format('HH:mm') : undefined;
+const formatToReceivedDate = (date: Date, time: string): string => `${moment(date).format('YYYY-MM-DD')} ${time}:00`;
+
 export const isValidTime = (newDate: string): boolean => {
   const maxDate = moment(getCurrentDate()).add(1, 'y').subtract(1, 'd');
-  return moment(newDate).isBetween(moment(getCurrentDate()).subtract(1, 'minutes'), maxDate);
+  return moment(newDate).isBetween(moment().add(30, 'm'), maxDate); 
 };
 
 function ReceiveDateField() {
   const [letterForm, setLetterForm] = useRecoilState(letterFormState);
-  const [date, setDate] = useState<Date>(
-    letterForm.receivedDate ? moment(letterForm.receivedDate).toDate() : getCurrentDate(),
-  );
+  const [date, setDate] = useState<Date>(letterForm.receivedDate ? moment(letterForm.receivedDate).toDate() : getCurrentDate(),);
   const [time, setTime] = useState<string>(
     getTime(letterForm.receivedDate) ?? getTime(getCurrentDate()) ?? '',
   );
@@ -75,7 +72,7 @@ function ReceiveDateField() {
           <>
             타임레터는 타임캡슐 편지 서비스예요.
             <br />
-            내가 원하는 시간에 상대방이 편지를 읽을 수 있도록 편지 시간은 최소 하루, 최대 1년 뒤인
+            내가 원하는 시간에 상대방이 편지를 읽을 수 있도록 편지 시간은 최소 10분, 최대 1년 뒤인
             미래 시간으로 설정해 주세요.
           </>
         }
