@@ -6,7 +6,7 @@ import { useMutation } from '@tanstack/react-query';
 
 import { letterAPI } from '~/api';
 import { letterFormState } from '~/pages/LetterForm/LetterForm.atoms';
-import { useValidateReceivedDateField } from '~/pages/LetterForm/ReceiveDateField/ReceivedDate.hooks';
+import { useValidateReceivedDateField } from '~/pages/LetterForm/ReceiveDateField/ReceivedDateField.hooks';
 import { NotificationToaster } from '~components/index';
 
 import { useValidateNameField } from './NameField/NameField.hooks';
@@ -34,7 +34,7 @@ export const useValidateLetterForm = (activeStep: number) => {
 
     if (activeStep === 4) {
       if (!letterForm.content) {
-        NotificationToaster.show('편지 내용을 입려해주세요.');
+        NotificationToaster.show('편지 내용을 입력해 주세요.');
       }
       return !!letterForm.content;
     }
