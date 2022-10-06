@@ -1,28 +1,11 @@
-import { useId, useRef } from 'react';
 import classNames from 'classnames';
 
-import { Position, Toast, Toaster } from '@blueprintjs/core';
+import { Position, Toaster } from '@blueprintjs/core';
 
 import { notificationToasterStyle } from './NotificationToaster.css';
-import { NotificationToasterProps } from './NotificationToaster.types';
 
-function NotificationToaster(props: NotificationToasterProps) {
-  const { className, message } = props;
-
-  const toasterRef = useRef<Toaster>(null);
-  const uniqueId = useId();
-
-  return (
-    <Toaster
-      ref={toasterRef}
-      className={classNames(notificationToasterStyle, className)}
-      position={Position.TOP}
-      key={uniqueId}
-    >
-      {/* TODO set timeout to 0 to make toast disappear faster but not working as doc https://blueprintjs.com/docs/#core/components/toast */}
-      <Toast message={message} timeout={0} />
-    </Toaster>
-  );
+function NotificationToaster() {
+  return null;
 }
 
 const Notification = Toaster.create({
@@ -30,7 +13,7 @@ const Notification = Toaster.create({
   position: Position.TOP,
 });
 
-const NotificationFn = (message: string) => Notification.show({ message });
+const NotificationFn = (message: string) => Notification.show({ message, timeout: 1200 });
 
 export default Object.assign(NotificationToaster, {
   show: NotificationFn,
