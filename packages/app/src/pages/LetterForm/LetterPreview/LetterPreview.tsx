@@ -41,7 +41,6 @@ function LetterPreview() {
     if (!userID || !id || !receivedDate || !senderName || !receiverName || !content || !urlSlug) {
       return;
     }
-    const letterStatus = LetterStatus.DRAFT;
     await saveLetter({
       userID,
       id,
@@ -51,11 +50,10 @@ function LetterPreview() {
       content,
       imageId,
       urlSlug,
-      letterStatus,
     });
     setLetterForm({
       ...letterForm,
-      letterStatus,
+      letterStatus: LetterStatus.DONE,
     });
     shareWithKakao({ receivedDate, senderName, urlSlug });
   };
